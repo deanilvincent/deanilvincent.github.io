@@ -3,7 +3,7 @@ layout: post
 type: blog
 title:  "Steps in Creating Basic ASP.NET Web Service API"
 date:   2017-05-16 00:33:33
-snippet: Orange, an open source and free minimal Jekyll theme. It is a product of my attempt at learning Jekyll. This guide will help you get started with the theme’s basic customization and settings.
+snippet: Here are the basic steps on how to create your first web api using ASP.NET MVC
 ---
 
 This basic steps will teach you how to create and implement basic Asp.net Web Service API.
