@@ -7,47 +7,58 @@ type: home
 	<div class="row centered">
     <div class="centered-content">
       <div class="avatar">{% include avatar.html %}</div>
+<style>
+.aboutme-container{
+	width:100%;
+	float:left;
+}
+.image-container{
+	width: 20%;
+	float:left;
+}
+.desc-container{
+	width: 80%;
+	float:left;
+}
+@media only screen and (max-width: 779px){
+		.image-container { width: 100% }
+    .desc-container { width: 100%; }
+}
+	</style>
+      <h1 class="tc">Hi, I'm Deanil Vicente. Welcome to my page!</h1>
+				<div class="aboutme-container">
+					<div class="image-container">
+						<img src="https://avatars2.githubusercontent.com/u/10904957?v=3&u=48dd49c480ae8f1074b9d205bfbd81db1be7db76&s=400"
+									height="130"
+									width="130"/>
+					</div>
+					<div class="desc-container">
+						<div class="intro-text">
+							<div class="row">
+								I'm currently working as a programmer. I do create windows, mobile and web apps. I have a passion when it comes to technologies and innovations. I'm also active in sharing my knowledge and skills as a community resource speaker in some universities and organizations here in the Philippines. In my free time, I usually play logical games, learning new things and exploring different things. 
+								<br/><br/>
+								I like to travel and take some photos and videos. Simply, I'm just a normal adventurer who seeks a lot of different adventures. (Oh, Come on! we only live once right? :p) Follow me in my <a href="https://www.instagram.com/deanilvincent3"/>IG Account</a> 
+								<br/><br/>
+								By the way, when it comes to drinks? I don't drink coffee and I already stopped that for almost 2 years but I'm addicted to hot tea. I don't drink alcholic beverage except for wine. In Addition, I like milk and fruit juice too.
+								<br/><br/>
+								I'm a simple programmer but my dreams are extraordinary :)
+							</div>
+						</div>
+					</div>
+				</div>
 
-      <h1 class="tc">Hi, I'm Mark Deanil Vicente. Welcome to my page!</h1>
-      
-        <div class="intro-text">
-          <h3 class="title">Features</h3>
-          <div class="row">
-            <div class="col-3">
-              <div class="feature">
-                <svg class="icon icon-person_outline"><use xlink:href="#icon-person_outline"></use></svg>
-                <h3 class="block">Portfolio showcase</h3>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="feature">
-                <svg class="icon icon-chat_bubble_outline"><use xlink:href="#icon-chat_bubble_outline"></use></svg>
-                <h3 class="block">Contact form</h3>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="feature">
-                <svg class="icon icon-add"><use xlink:href="#icon-add"></use></svg>
-                <h3 class="block">More to come...</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <p class="tc"><a class="button" id="downloadOrange" href="https://github.com/talentedunicorn/orange/archive/master.zip">Get the latest version</a></p>
-          </div>
-        </div>
       </div>
 	</div>
 </section>
 
 <!-- Work Section -->
+<!--
 <section id="work" class="section section-work">
 	<div class="row">
 		<h2 class="heading">Previous Projects</h2>
 		
 		<div class="work-container">
-			<!-- Insert project -->
+			<!-- Insert project 
 		</div>
 
 		<ul class="work-grid">
@@ -66,7 +77,7 @@ type: home
 			
 			{% if projects_count < 4 %}
 				<li class="work-tile-placeholder row work-tile-{{ projects_count }}">
-				<!-- <li class="work-tile-placeholder row" style="width: {{ projects_count | times: 25 | minus: 100 | times: -1 }}%;"> -->
+				 <li class="work-tile-placeholder row" style="width: {{ projects_count | times: 25 | minus: 100 | times: -1 }}%;"> 
 					<span class="placeholder">Want to see your project here?</span>
 					<p class="placeholder small">Drop me a line <a href="#contact">below</a></p>
 				</li>
@@ -82,7 +93,7 @@ type: home
 	</div>
 </section>
 
-<!-- Contact section -->
+Contact section -->
 {% if site.formpost %}
 <section id="contact" class="section section-contact">
 	<div class="row">
