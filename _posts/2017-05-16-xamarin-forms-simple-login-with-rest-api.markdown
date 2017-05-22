@@ -3,7 +3,7 @@ layout: post
 type: blog
 title:  "Xamarin Forms Simple Login With Rest API"
 date:   2017-05-16 01:23:33
-snippet: You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
+snippet: If you're using asp.net web api or you want to apply this api snippets and add some logic to your xamarin forms login system, this post is very helpful 
 ---
 
 This project is one of the simplest ways how to implement login system using Web Service Rest API.
