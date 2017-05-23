@@ -5,6 +5,12 @@ blogroll: true
 ---
 {% for post in paginator.posts %}
 
+<style>
+	a{
+	color: #1F4788;
+	}
+</style>
+
 <div class="post-snippet row">
 	<div class="post-date">
 		<span>{{ post.date | date: "%d %b"}}</span>
