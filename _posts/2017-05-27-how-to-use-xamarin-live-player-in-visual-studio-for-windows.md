@@ -2,7 +2,7 @@
 layout: post
 type: blog
 title:  "How to Use Xamarin Live Player in Visual Studio for Windows"
-date:   2017-05-26 01:31:31
+date:   2017-05-27 01:31:31
 snippet: This post will help you how to use the Xamarin Live Player on your installed Visual Studio 2017 v.15.3 with updated Xamarin for Visual Studio
 ---
 
