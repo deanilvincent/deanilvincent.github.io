@@ -81,5 +81,6 @@ For Xamarin Live Player FAQ, go to this <a href="https://blog.xamarin.com/xamari
 
 For troubleshooting procedures, go to this <a href="https://developer.xamarin.com/guides/cross-platform/live/troubleshooting/">link</a>
 
+<a href="https://deanilvincent.github.io//2017/05/26/how-to-use-xamarin-live-player-in-visual-studio-for-windows/">Basic Steps On to Use Xamarin Live Player</a>
 
 Thank you for reading my this post. Feel free to comment below :)
