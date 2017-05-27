@@ -280,4 +280,8 @@ public App()
 
 9.2 Run the app
 
+<a href="https://github.com/deanilvincent/Xamarin-Forms-Simple-Login-With-Rest-API">Here's the Github Link For This Post</a>
+
+Give me a ★ :D
+
 Thank you for reading. I hope you've learned from me. Feel to comment below!
