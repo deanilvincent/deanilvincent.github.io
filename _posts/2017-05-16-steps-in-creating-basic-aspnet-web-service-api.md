@@ -63,7 +63,7 @@ Like in basic ASP.NET web app, the connection snippet is the same with ASP.NET W
 
 <img src="https://cloud.githubusercontent.com/assets/10904957/23102221/4e3b296a-f6e0-11e6-86e0-c72f5d4203ec.PNG"/>
 
-3.2 Adding property inside the class
+3.2 Adding properties inside the class
 
 {% highlight ruby linenos %}
 public class UserDetailCredentials
@@ -103,7 +103,7 @@ Now we have our MVC controller and our UI pages, we can now create our API contr
 
 * Creating API Controller
 
-4.6 Right click the Controllers folder, choose Add and Choose "Controller..."
+4.6 Right click the Controllers' folder, choose Add and Choose "Controller..."
 
 4.7 Dialog controller will open, choose the Web API 2 Controller with actions, using Entity Framework. 
 
@@ -155,7 +155,7 @@ Add sample details
 
 Now we have set of details, let's us now view our custom API page.
 
-In order to access the api, by default, you need to set the uri to api follow by your api controller name
+In order to access the api, by default, you need to set the uri to api followed by your api controller name
 
 {% highlight ruby linenos %}
 http://yourhost/api/yourapicontrollername
@@ -171,7 +171,11 @@ XML Format using Google Chrome
 
 <img src="https://cloud.githubusercontent.com/assets/10904957/23102886/6774d992-f6ec-11e6-95d9-165034e05736.PNG"/>
 
-Thank you for reading.
+<a href="https://github.com/deanilvincent/Steps-In-Creating-Basic-ASP.NET-WebAPI">Here’s the Github Link For This Post</a>
+
+Give me a ★ :D
+
+Thank you for reading. I hope you’ve learned from me. Feel to comment below!
 
 <ol class="footnotes">
 <li id="fn-1">For development and optimizing images <a href="#fn-1-ret">&#8617;</a></li>
