@@ -22,7 +22,7 @@ Before we begin, we need to prepare our Web Service.
 
 I created an optional prerequisite in creating your basic web service api using ASP.NET Web API.
 
-Here's the link: https://github.com/deanilvincent/StepsInCreatingBasicASP.NETWebAPI
+Here's the link: <a href="https://deanilvincent.github.io//2017/05/16/steps-in-creating-basic-aspnet-web-service-api/"> Steps in Creating Basic Asp.Net Web Service API</a>
 
 In this sample web service project, I included these following model class properties:
 
@@ -38,7 +38,7 @@ public class UserDetailCredentials
 
 When you are done creating your web service, you can now proceed in creating our Xamarin Cross Platform Mobile App project.
 
-## Basic Steps in Implementing Login System using Xamarin Cross Platform.
+## Basic Steps in Implementing Login System using Xamarin Forms.
 
 ### 1.0 Creating the project
 
@@ -65,12 +65,14 @@ Main Project Portable (PCL)
 
 2.1 Install the following nuget packages at the main project solution:
 
-- Microsoft.Net.Http (https://www.nuget.org/packages/Microsoft.Net.Http/)
-    - Project URL: http://go.microsoft.com/fwlink/?LinkID=280055
-- Microsoft.Bcl (https://www.nuget.org/packages/Microsoft.Bcl/)
-    - Project URL: http://go.microsoft.com/fwlink/?LinkID=280057
-- Microsoft.Bcl.Build (https://www.nuget.org/packages/Microsoft.Bcl.Build/)
-    - Project URL: http://go.microsoft.com/fwlink/?LinkID=296436
+- Microsoft.Net.Http (<a href="https://www.nuget.org/packages/Microsoft.Net.Http/">https://www.nuget.org/packages/Microsoft.Net.Http/</a>)
+    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=280055">http://go.microsoft.com/fwlink/?LinkID=280055</a>
+- Microsoft.Bcl (<a href="https://www.nuget.org/packages/Microsoft.Bcl/">https://www.nuget.org/packages/Microsoft.Bcl/</a>)
+    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=280057">http://go.microsoft.com/fwlink/?LinkID=280057</a>
+- Microsoft.Bcl.Build (<a href="https://www.nuget.org/packages/Microsoft.Bcl.Build/">https://www.nuget.org/packages/Microsoft.Bcl.Build/</a>)
+    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=296436">http://go.microsoft.com/fwlink/?LinkID=296436</a>
+- Json.NET (<a href="https://www.nuget.org/packages/newtonsoft.json/">https://www.nuget.org/packages/newtonsoft.json/</a>)
+    - Documetation: <a href="http://www.newtonsoft.com/json/help/html/Introduction.htm">http://www.newtonsoft.com/json/help/html/Introduction.htm</a>
 
 You can use either the Manage Packages for Solution or Manually Type in the packages in the Package Manager Console.
 
@@ -98,9 +100,13 @@ You can use either the Manage Packages for Solution or Manually Type in the pack
 {% highlight ruby linenos %}
 public class UserDetailCredentials
 {
+   [JsonProperty("id")]
    public int Id { get; set; }
+   [JsonProperty("username")]
    public string Username { get; set; }
+   [JsonProperty("password")]
    public string Password { get; set; }
+   [JsonProperty("name")]
    public string Name { get; set; }
 }
 {% endhighlight %}
@@ -109,7 +115,7 @@ public class UserDetailCredentials
 
 ### 4.0 Adding our code snippet in our web service api controller
 
-4.1 Go to your api web service controller and paste this following code snippet. In this code, we create a new HTTP Get Request with a custom route request of api/UserCredentials/username={username}/password={password}
+4.1 Go to your web service api controller and paste this following code snippet. In this code, we create a new HTTP Get Request with a custom route request of api/UserCredentials/username={username}/password={password}
 
 {% highlight ruby linenos %}
 [HttpGet]
@@ -218,7 +224,7 @@ public async Task<bool> CheckLoginIfExists(string username, string password)
         Clicked="ButtonLogin_Clicked"/>
 {% endhighlight %}
 
-Once the Xaml even has been created, automatically our .cs event handler will be created too.
+Once the Xaml event has been created, automatically our .cs event handler will be created too.
 
 {% highlight ruby linenos %}
 private void ButtonLogin_Clicked(object sender, EventArgs e)
@@ -229,7 +235,9 @@ private void ButtonLogin_Clicked(object sender, EventArgs e)
 
 ### 8.0 Calling the rest client to validate the login
 
-8.1 Change the even handler to async by adding "async" before the void and "await" inside the event handler.
+8.1 Change the event handler to async by adding "async" before the void and "await" inside the event handler.
+
+What does "async" and "await" do, is that it will optimize the waiting thread of the request.
 
 {% highlight ruby linenos %}
 private async void ButtonLogin_Clicked(object sender, EventArgs e)
