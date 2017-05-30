@@ -65,14 +65,14 @@ Main Project Portable (PCL)
 
 2.1 Install the following nuget packages at the main project solution:
 
-- Microsoft.Net.Http (<a href="https://www.nuget.org/packages/Microsoft.Net.Http/">https://www.nuget.org/packages/Microsoft.Net.Http/</a>)
-    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=280055">http://go.microsoft.com/fwlink/?LinkID=280055</a>
-- Microsoft.Bcl (<a href="https://www.nuget.org/packages/Microsoft.Bcl/">https://www.nuget.org/packages/Microsoft.Bcl/</a>)
-    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=280057">http://go.microsoft.com/fwlink/?LinkID=280057</a>
-- Microsoft.Bcl.Build (<a href="https://www.nuget.org/packages/Microsoft.Bcl.Build/">https://www.nuget.org/packages/Microsoft.Bcl.Build/</a>)
-    - Project URL: <a href="http://go.microsoft.com/fwlink/?LinkID=296436">http://go.microsoft.com/fwlink/?LinkID=296436</a>
-- Json.NET (<a href="https://www.nuget.org/packages/newtonsoft.json/">https://www.nuget.org/packages/newtonsoft.json/</a>)
-    - Documetation: <a href="http://www.newtonsoft.com/json/help/html/Introduction.htm">http://www.newtonsoft.com/json/help/html/Introduction.htm</a>
+- <a href="https://www.nuget.org/packages/Microsoft.Net.Http/">Microsoft.Net.Http</a>
+    - <a href="http://go.microsoft.com/fwlink/?LinkID=280055">Project URL</a>
+- <a href="https://www.nuget.org/packages/Microsoft.Bcl/">Microsoft.Bcl</a>
+    - <a href="http://go.microsoft.com/fwlink/?LinkID=280057">Project URL</a>
+- <a href="https://www.nuget.org/packages/Microsoft.Bcl.Build/">Microsoft.Bcl.Build</a>
+    - <a href="http://go.microsoft.com/fwlink/?LinkID=296436">Project URL</a>
+- <a href="https://www.nuget.org/packages/newtonsoft.json/">Json.NET</a>
+    - <a href="http://www.newtonsoft.com/json/help/html/Introduction.htm">Documetation</a>
 
 You can use either the Manage Packages for Solution or Manually Type in the packages in the Package Manager Console.
 
