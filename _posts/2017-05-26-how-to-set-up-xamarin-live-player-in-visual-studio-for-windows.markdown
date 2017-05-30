@@ -24,9 +24,9 @@ To make it simpler, Xamarin Live Player will make your debugging really fast and
 
 ### 1.0 Get The App on Google Play Store or AppStore
 
-- Google Play: <a href="https://play.google.com/store/apps/details?id=com.xamarin.live">https://play.google.com/store/apps/details?id=com.xamarin.live</a>
+- Google Play: <a href="https://play.google.com/store/apps/details?id=com.xamarin.live">Download in Google Play</a>
 
-- AppStore: <a href="https://itunes.apple.com/us/app/xamarin-live-player/id1228841832?ls=1&mt=8">https://itunes.apple.com/us/app/xamarin-live-player/id1228841832?ls=1&mt=8</a>
+- AppStore: <a href="https://itunes.apple.com/us/app/xamarin-live-player/id1228841832?ls=1&mt=8">Download in AppStore</a>
 
 ### 2.0 Download and Use Preview Version Of Visual Studio 2017 v15.3 (If you already have Visual Studio 2017 v.15.3, skip this)
 
