@@ -77,3 +77,16 @@ And it took only millisecond(s) to run ;)
 
 Thank you for reading my this post. Feel free to comment below :)
 
+<div class="ads-content">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BlogSiteAds -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1252568031878890"
+     data-ad-slot="8678244963"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
