@@ -5,7 +5,9 @@ layout: blog
 <p class="post-date">{{ page.date | date: "%A, %-d %B %Y"}}</p>
 <h1 class="post-title">{{ page.title }}</h1>
 <img class="post-header" src="{{ page.header_image }}" alt="{{ page.header_image_alt }}">
-<div class="post-content">{{ content }}</div>
+<div class="post-content">
+{{ content }}
+
 <div class="ads-content">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- BlogSiteAds -->
@@ -17,6 +19,8 @@ layout: blog
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
+	
 </div>
 	
 <!-- Share -->
