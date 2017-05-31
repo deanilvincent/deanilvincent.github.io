@@ -176,7 +176,3 @@ XML Format using Google Chrome
 Give me a ★ :D
 
 Thank you for reading. I hope you’ve learned from me. Feel to comment below!
-
-<ol class="footnotes">
-<li id="fn-1">For development and optimizing images <a href="#fn-1-ret">&#8617;</a></li>
-</ol>
