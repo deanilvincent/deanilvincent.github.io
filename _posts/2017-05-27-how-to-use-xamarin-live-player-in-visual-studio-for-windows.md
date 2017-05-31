@@ -77,7 +77,7 @@ And it took only millisecond(s) to run ;)
 
 Thank you for reading my this post. Feel free to comment below :)
 
-<div class="ads-content">
+<div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- BlogSiteAds -->
 <ins class="adsbygoogle"
@@ -89,4 +89,3 @@ Thank you for reading my this post. Feel free to comment below :)
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
-
