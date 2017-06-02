@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>	
   {% include head.html %}
-
+    {% if site.tagManagerID %}
+	
 <!-- Enable Google Ads -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -11,7 +12,6 @@
   });
 </script>
 	
-    {% if site.tagManagerID %}
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id={{site.tagManagerID}}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
