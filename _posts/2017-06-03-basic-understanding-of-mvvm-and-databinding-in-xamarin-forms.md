@@ -69,7 +69,7 @@ The image below, shows a simple visualization in implementing data binding.
   
 <img src="https://cloud.githubusercontent.com/assets/10904957/26750251/55ef8cac-4850-11e7-89c1-401ac51f0acb.png"/>
 
-### Mode Types
+### Common Mode Types
 
 - OneWay
   - From Source to Target only.
