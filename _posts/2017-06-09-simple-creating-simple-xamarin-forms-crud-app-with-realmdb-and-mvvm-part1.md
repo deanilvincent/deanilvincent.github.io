@@ -172,7 +172,7 @@ public List<CustomerDetails> ListOfCustomerDetails
 // Add this package
 using Realms;
 
-// Add this inside your view model classs
+// Add this inside your view model class
 Realm _getRealmInstance = Realm.GetInstance();
 
 public CustomerViewModel(){
