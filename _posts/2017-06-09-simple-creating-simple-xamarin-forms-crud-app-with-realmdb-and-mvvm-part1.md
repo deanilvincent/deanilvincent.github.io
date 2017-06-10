@@ -165,7 +165,7 @@ public List<CustomerDetails> ListOfCustomerDetails
 }
 {% endhighlight %}
 
-6.4 Create a constructor and a method for getting the list of Customer Details
+6.4 Create a constructor for getting the list of Customer Details
 
 {% highlight ruby linenos %}
 ...
