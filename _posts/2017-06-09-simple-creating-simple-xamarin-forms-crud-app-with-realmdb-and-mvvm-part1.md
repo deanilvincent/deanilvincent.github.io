@@ -266,6 +266,5 @@ public Command RemoveCommand
 We're are done with the part I, now we can prepare our views and add some code snippets for navigation.
 
 <a href="https://deanilvincent.github.io//2017/06/10/simple-creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part2/">Creating Simple Xamarin Forms Crud App with RealmDB and MVVM Part 2</a>
-https://deanilvincent.github.io//2017/06/10/simple-creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part2/
 
 If you have some questions or issues while following the steps here in the part 1, let me know below :)
