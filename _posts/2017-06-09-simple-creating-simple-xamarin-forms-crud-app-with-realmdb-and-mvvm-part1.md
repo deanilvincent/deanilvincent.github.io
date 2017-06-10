@@ -6,6 +6,9 @@ date:   2017-06-09 11:36:33
 snippet: In this post, we'll be creating simple Xamarin.Forms crud app with Realm Database and MVVM architectural design pattern. (Part 1)
 ---
 
+<iframe src="https://player.vimeo.com/video/221072097" width="640" height="359" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/221072097">Using RealmDatabase in Xamarin Forms with MVVM</a> from <a href="https://vimeo.com/user37921231">deanil</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
 In this blog tutorial, I'll be guiding you with very easy steps how to create a simple Xamarin.Forms crud app with Realm Database for local storage and integrated with MVVM architectural design pattern.
 
 If you have no idea about MVVM (Model-View-View-Model) and DataBinding in Xamarin.Forms yet, you can read this post created by <a href="https://deanilvincent.github.io/">Me</a> of course :)
