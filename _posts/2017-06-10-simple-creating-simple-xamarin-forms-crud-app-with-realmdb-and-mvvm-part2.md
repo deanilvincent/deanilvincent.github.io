@@ -148,7 +148,7 @@ I guess you are wondering now, where these commands are located? Proceed to step
 
 ### 10.0 Updating Our App.xaml.cs and Run the App 
 
-10.1 Update our MainPage inside our App.xaml.cs
+10.1 Update your MainPage inside our App.xaml.cs
 
 <img src="https://user-images.githubusercontent.com/10904957/27001886-c66d483c-4e06-11e7-9ee1-df02b744bd50.PNG"/>
 
