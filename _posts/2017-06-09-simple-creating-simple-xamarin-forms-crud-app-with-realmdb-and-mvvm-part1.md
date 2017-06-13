@@ -212,7 +212,7 @@ public Command CreateCommand // for ADD
 {
   get
   {
-    return new Command(async()=>{
+    return new Command(()=>{
       // for auto increment the id upon adding
       _customerDetails.CustomerId = _getRealmInstance.All<CustomerDetails>().Count() + 1;
       _getRealmInstance.Write(()=>
