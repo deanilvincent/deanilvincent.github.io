@@ -10,7 +10,7 @@ In this post, we will create basic design of our pages and navigate them properl
 
 If you haven't read the first part, you can find it here:
 
-<a href="https://deanilvincent.github.io//2017/06/09/simple-creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part1/">Creating Simple Xamarin Forms Crud App with RealmDB and MVVM Part 1</a>
+<a href="https://deanilvincent.github.io/2017/06/09/creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part1/">Creating Simple Xamarin Forms Crud App with RealmDB and MVVM Part 1</a>
 
 ### 8.0 Creating Pages for List of Customer Details, Create Page, Edit & Delete Page
 
