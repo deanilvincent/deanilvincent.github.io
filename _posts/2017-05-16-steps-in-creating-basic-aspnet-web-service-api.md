@@ -121,7 +121,7 @@ Here's the summary of the default api contorller that we created.
 
 <img src="https://cloud.githubusercontent.com/assets/10904957/23102640/e52e594e-f6e7-11e6-9e38-e0058ee7e562.PNG"/>
 
-* 5.0 Enabling Migrations and updating the database
+### 5.0 Enabling Migrations and updating the database
 
 Now we already prepared everything, it's time to enable migrations and update the database.
 
@@ -141,7 +141,7 @@ The preview of your migration will appear. When you are done inspecting, you can
 
 <img src="https://cloud.githubusercontent.com/assets/10904957/23102761/30e2fa8c-f6ea-11e6-8590-69a9159da83b.PNG"/>
 
-* 6.0 Running the whole project
+### 6.0 Running the whole project
 
 6.1 Build and Start running the project.
 
