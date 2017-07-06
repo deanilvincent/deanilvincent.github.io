@@ -144,4 +144,4 @@ On the next page, we'll start creating class file in each folder and put codes s
 
 <a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part2/">Simple Weather App in Xamarin Forms with MVVM using Weather API Part 2</a>
 
-If you some questions or comments regarding the Part 1 page, please drop it below. :)
+If you have some questions or comments regarding the Part 1 page, please drop it below. :)
