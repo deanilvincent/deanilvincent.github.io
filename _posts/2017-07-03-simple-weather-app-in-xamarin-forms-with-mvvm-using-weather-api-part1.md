@@ -47,7 +47,7 @@ For the purpose of this demo, we'll going to use OpenWeatherMap free subscriptio
 
 <img src="https://user-images.githubusercontent.com/10904957/27801416-7f8ce786-6050-11e7-975f-44c89764bddd.png"/>
 
-1.2 Create your account (if you haven't created yet) <a href="https://home.openweathermap.org/users/sign_up">https://home.openweathermap.org/users/sign_up</a>
+1.2 Create your account here: <a href="https://home.openweathermap.org/users/sign_up">OpenWeatherMap Sign Up Page</a>(if you haven't created yet)
 
 1.3 After creating your account, Go to your Account Details and look for "API Keys"
 
