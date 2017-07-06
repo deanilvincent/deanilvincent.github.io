@@ -3,7 +3,7 @@ layout: post
 type: blog
 title:  "Simple Weather App in Xamarin Forms with MVVM using Weather API Part 1"
 date:   2017-07-03 11:10:33
-snippet: This post will help you getting started in creating simple weather app in xamarin forms connected on a weather api
+snippet: This post will help you get started in creating simple weather app in xamarin forms connected on a weather api
 ---
 
 I'm going to guide you today on how to create <a href="/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part1">"Simple Weather App in Xamarin Forms with MVVM using Weather API."</a>
