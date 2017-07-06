@@ -6,7 +6,9 @@ date:   2017-07-03 12:33:33
 snippet: This is the continuation of the "Simple Weather App in Xamarin Forms with MVVM using Weather API Part 2" where we will start putting our UI design for our simple weather app
 ---
 
-This is the continuation of the "Simple Weather App in Xamarin Forms with MVVM using Weather API Part 2" where we'll going to put our UI
+This is the continuation of <a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part2/">"Simple Weather App in Xamarin Forms with MVVM using Weather API Part 2"</a> where we'll going to put our UI.
+
+If you want to visit the Part 1, here's the link: <a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part1/">"Simple Weather App in Xamarin Forms with MVVM using Weather API Part 1"</a>
 
 This is the last part of building our simple weather app
 
@@ -14,7 +16,7 @@ This is the last part of building our simple weather app
 
 ### 11.0 The Xaml Page
 
-11.1 Open the MainPage.xaml Page and reference the ViewModel inside the Xaml Page
+11.1 Open the MainPage.xaml Page and reference the ViewModel inside the Xaml Page first.
 
 {% highlight ruby linenos %}
 xmlns:weatherVm="clr-namespace:SimpleCrossWeatherApp.ViewModels"
@@ -100,4 +102,6 @@ xmlns:weatherVm="clr-namespace:SimpleCrossWeatherApp.ViewModels"
 
 ## Final Step
 
-Run the App
+### Run the App
+
+If you have some questions or comments, please drop it below. :)
