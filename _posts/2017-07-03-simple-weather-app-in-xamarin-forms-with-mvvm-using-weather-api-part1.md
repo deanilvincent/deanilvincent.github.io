@@ -6,7 +6,7 @@ date:   2017-07-03 11:10:33
 snippet: This post will help you getting started in creating simple weather app in xamarin forms connected on a weather api
 ---
 
-I'm going to guide you today on how to creating <a href="/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part1">"Simple Weather App in Xamarin Forms with MVVM using Weather API."</a>
+I'm going to guide you today on how to create <a href="/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part1">"Simple Weather App in Xamarin Forms with MVVM using Weather API."</a>
 
 <strong>Overview:</strong>This simple cross platform mobile weather app gets the weather data from weather api that we'll going to use in order to show the weather details after typing the name of the city. In fetching the weather data, your app needs to be connected over the internet connection.
 
@@ -22,7 +22,7 @@ When you are ready to start, you can now proceed in reading the steps below.
 
 ## Weather APIs
 
-If you're already familiar on how web api works, you're wondering now what weather api we will going to use for this post. To give you some ideas, 
+If you're already familiar on how web api works, you're wondering now what weather api we will going to use for this tutorial. To give you some ideas, 
 
 Here are the top 8 common weather apis for developing apps:
 
@@ -35,7 +35,7 @@ Here are the top 8 common weather apis for developing apps:
 - <a href="https://darksky.net/dev/">Dark Sky API</a>
 - <a href="https://www.aerisweather.com/develop/">Aeris Weather</a>
 
-You can use some of weather apis for free but if you want to get the update, example, after 10 minutes, you need to pay for it. 
+You can use some of weather apis for free but if you want to get the latest weather update, example, after 10 minutes, you need to pay for it. 
 
 For the purpose of this demo, we'll going to use OpenWeatherMap free subscription. Here's the <a href="https://openweathermap.org/price">pricing plan link.</a>
 
@@ -79,17 +79,17 @@ In associating your api key, it's important you understand this simple example:
 http://api.openweathermap.org/data/2.5/weather?q=Manila&APPID=653b1f0bf8a08686ac505ef6f05b94c2
 {% endhighlight %}
 
-Working link: <a href="http://api.openweathermap.org/data/2.5/weather?q=Manila&APPID=653b1f0bf8a08686ac505ef6f05b94c2">http://api.openweathermap.org/data/2.5/weather?q=Manila&APPID=653b1f0bf8a08686ac505ef6f05b94c2</a>
+Here is the working <a href="http://api.openweathermap.org/data/2.5/weather?q=Manila&APPID=653b1f0bf8a08686ac505ef6f05b94c2">link.</a>
 
 <img src="https://user-images.githubusercontent.com/10904957/27802669-cf351c3e-6057-11e7-94ff-475d46372dc0.png"/>
 
 <i>It returns a json weather details</i>
 
-Note: If you want to view your web api in a nice and easy way, use some tools like <a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo">Advanced REST Client by Google Web
+Note: If you want to view your web api in a nice and easy way, use some tools like <a href="https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo">Advanced REST Client by Google Web Store
 
 <img src="https://user-images.githubusercontent.com/10904957/27834185-787ae458-6108-11e7-8678-abb57fd28312.png"/>
 
-<i>Using the created link with our own api key</i>
+<i>Using the created link with api key</i>
 
 ## Getting Started in Creating Weather App Connected in a Weather API
 
@@ -140,4 +140,8 @@ And also, drag or move the MainPage.xaml inside your "Views" folder
 - <a href="https://www.nuget.org/packages/newtonsoft.json/">Newtonson.Json v8.0.2</a>
     - <a href="http://www.newtonsoft.com/json/help/html/Introduction.htm">Documetation</a>
 
-On the next page, we'll start creating class file in each folder and put codes step-by-step.
+On the next page, we'll start creating class file in each folder and put codes step-by-step. 
+
+<a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part2/">Simple Weather App in Xamarin Forms with MVVM using Weather API Part 2</a>
+
+If you some questions or comments regarding the Part 1 page, please drop it below. :)
