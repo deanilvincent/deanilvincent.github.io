@@ -237,4 +237,4 @@ On the last page, we'll going to create our UI Page for our simple weather app
 
 <a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part3/">Simple Weather App in Xamarin Forms with MVVM using Weather API Part 3</a>
 
-If you some questions or comments regarding the Part 2 page, please drop it below. :)
+If have you some questions or comments regarding the Part 2 page, please drop it below. :)
