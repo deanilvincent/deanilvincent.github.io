@@ -104,7 +104,7 @@ xmlns:weatherVm="clr-namespace:SimpleCrossWeatherApp.ViewModels"
         <StackLayout HorizontalOptions="StartAndExpand">
             <Label Text="Wind Speed:"/>
         </StackLayout>
-    <StackLayout HorizontalOptions="EndAndExpand">
+        <StackLayout HorizontalOptions="EndAndExpand">
             <Label Text="{Binding WeatherMainModel.wind.speed}"/>
         </StackLayout>
     </StackLayout>
