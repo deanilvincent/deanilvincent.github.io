@@ -186,6 +186,7 @@ public WeatherMainModel WeatherMainModel
     set
     {
         _weatherMainModel = value;
+        IconImageString = "http://openweathermap.org/img/w/" + _weatherMainModel.weather[0].icon + ".png"; // fetch weather icon image
         OnPropertyChanged();
     }
 }
@@ -199,6 +200,18 @@ public string City
         _city = value;
         InitializeGetWeatherAsync();
         OnPropertyChanged();
+    }
+}
+
+private string _iconImageString; // for weather icon image string binding
+public string IconImageString
+{
+    get { return _iconImageString; }
+    set 
+    { 
+        _iconImageString = value;
+        OnPropertyChanged();
+        }
     }
 }
 
