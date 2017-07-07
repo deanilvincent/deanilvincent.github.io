@@ -91,6 +91,8 @@ Note: If you want to view your web api in a nice and easy way, use some tools li
 
 <i>Using the created link with api key</i>
 
+For more weather data from OpenWeatherMap, go to this <a href="https://openweathermap.org/weather-data">link.</a>
+
 ## Getting Started in Creating Weather App Connected in a Weather API
 
 ### 3.0 Creating Your Cross Platform App Project (Skip this if necessary)
