@@ -91,6 +91,17 @@ xmlns:weatherVm="clr-namespace:SimpleCrossWeatherApp.ViewModels"
 
     <StackLayout Orientation="Horizontal">
         <StackLayout HorizontalOptions="StartAndExpand">
+            <Label Text="Weather Icon:"/>
+        </StackLayout>
+        <StackLayout HorizontalOptions="EndAndExpand">
+            <Image Source="{Binding IconImageString}"
+                   WidthRequest="30"
+                   HeightRequest="30"/>
+            </StackLayout>
+    </StackLayout>
+        
+    <StackLayout Orientation="Horizontal">
+        <StackLayout HorizontalOptions="StartAndExpand">
             <Label Text="Wind Speed:"/>
         </StackLayout>
     <StackLayout HorizontalOptions="EndAndExpand">
