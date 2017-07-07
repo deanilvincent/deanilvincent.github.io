@@ -224,7 +224,7 @@ private async Task InitializeGetWeatherAsync()
     try
     {
         IsBusy = true; // set the ui property "IsRunning" to true(loading) in Xaml ActivityIndicator Control
-        WeatherMain = await _weatherServices.GetWeatherDetails(_city);
+        WeatherMainModel = await _weatherServices.GetWeatherDetails(_city);
     }
     finally
     {
