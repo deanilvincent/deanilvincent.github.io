@@ -179,13 +179,13 @@ using SimpleCrossWeatherApp.ServicesHandler;
 
 WeatherServices _weatherServices = new WeatherServices();
 
-private WeatherMainModel _weatherMain;  // for xaml binding
-public WeatherMainModel WeatherMain
+private WeatherMainModel _weatherMainModel;  // for xaml binding
+public WeatherMainModel WeatherMainModel
 {
-    get { return _weatherMain; }
+    get { return _weatherMainModel; }
     set
     {
-        _weatherMain = value;
+        _weatherMainModel = value;
         OnPropertyChanged();
     }
 }
