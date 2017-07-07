@@ -197,7 +197,7 @@ public string City
     set
     {
         _city = value;
-        InitializeGetWeatherAsync().Wait(); // We put .Wait() method in order to wait the thread while it's processing
+        InitializeGetWeatherAsync();
         OnPropertyChanged();
     }
 }
