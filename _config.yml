@@ -10,6 +10,8 @@ description: "This is my blog website."
 # ===========
 avatar_path: "/assets/img/avatar.png"
 
+gems:
+  - jekyll-feed
 
 # Url: Your hosting url
 # Change this to your hosting url e.g. http://[your_name].github.io OR http://localhost:4000
