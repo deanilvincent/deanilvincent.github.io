@@ -82,6 +82,8 @@ namespace SimpleCrossWeatherApp.Models
         public string main { get; set; }
         [JsonProperty("description")]
         public string description { get; set; }
+        [JsonProperty("icon")]
+        public string icon { get; set; }
     }
 
     public class WeatherSysDetails
