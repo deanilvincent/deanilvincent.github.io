@@ -200,7 +200,9 @@ public string City
     set
     {
         _city = value;
-        InitializeGetWeatherAsync();
+        Task.Run(async()=>{
+            await InitializeGetWeatherAsync();
+        });
         OnPropertyChanged();
     }
 }
