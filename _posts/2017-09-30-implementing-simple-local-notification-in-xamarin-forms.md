@@ -56,7 +56,7 @@ If you're ready, let's get started!
 
 Package Description: 
 The local notification plugin provides a simple, cross-platform way to show local notifications from within native mobile applications. Works with Xamarin.Android, Xamarin.iOS (Classic and Unified), Windows 8.1, Windows Phone 8.1 and Windows Phone Silverlight 8.1.
-- License under: https://github.com/edsnider/LocalNotificationsPlugin/blob/master/LICENSE
+- License under <a href="https://github.com/edsnider/LocalNotificationsPlugin/blob/master/LICENSE">here</a>
 
 <a href="https://github.com/edsnider/LocalNotificationsPlugin">(Github page)</a>
 
