@@ -1,0 +1,68 @@
+---
+layout: blog
+type: blog
+blogroll: true
+---
+<style>
+	h2 a{
+	color: #1F4788;
+	}
+</style>
+
+<div class="post-snippet row">
+	<div class="post-date">
+		<span>12 Jan.</span>
+		<span>2018</span>
+	</div>
+
+	<div class="post-summary">
+		<h2 class="post-header"><a href="/2018/01/12/steps-in-creating-simple-but-dynamic-powerful-web-app-using-asp-net-core-mvc-connected-to-a-database/">Steps in Creating Simple But Dynamic Powerful Web App using ASP.NET Core MVC connected to a Database</a></h2>
+		<p>This blog post will help you to create a simple but dynamic powerful web app powered by ASP.NET Core that is connected with MS Sql Server <a href="/2017/11/10/how-to-install-and-setup-maps-and-geolocation-to-your-cross-platform-project/" class="post-more">...read more</a></p>
+		<strong><a href="/blog/aspnet/">#asp.net</a></strong>
+	</div>
+</div>
+
+<div class="post-snippet row">
+	<div class="post-date">
+		<span>16 May</span>
+		<span>2017</span>
+	</div>
+
+	<div class="post-summary">
+		<h2 class="post-header"><a href="/2017/05/16/steps-in-creating-basic-aspnet-web-service-api">Steps in Creating Basic ASP.NET Web Service API</a></h2>
+		<p>Here are the basic steps on how to create your first web api using ASP.NET MVC<a href="/2017/05/16/steps-in-creating-basic-aspnet-web-service-api" class="post-more">...read more</a></p>
+		<strong><a href="https://deanilvincent.github.io/blog/aspnet">#asp.net</a></strong>
+	</div>
+</div>
+<!--
+{% for post in paginator.posts %}
+<div class="post-snippet row">
+	<div class="post-date">
+		<span>{{ post.date | date: "%d %b"}}</span>
+		<span>{{ post.date | date: "%Y"}}</span>
+	</div>
+
+	<div class="post-summary">
+		<h2 class="post-header"><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h2>
+		<p>{{ post.snippet }} <a href="{{ post.url | prepend: site.url }}" class="post-more">...read more</a></p>
+	</div>
+</div>
+{% endfor %}
+-->
+<!-- Pagination links -->
+{% if paginator.total_pages > 0 %}
+<div class="pagination row">
+	{% if paginator.previous_page %}
+		<a href="{{ paginator.previous_page_path }}" class="previous icon-font icon-navigate-before"></a>
+	{% else %}
+		<a href="javascript:;" class="previous icon-font icon-navigate-before disabled"></a>
+
+	{% endif %}
+
+	{% if paginator.next_page %}
+		<a href="{{ paginator.next_page_path }}" class="next icon-font icon-navigate-next"></a>
+	{% else %}
+		<a href="javascript:;" class="next icon-font icon-navigate-next disabled"></a>
+	{% endif %}
+</div>
+{% endif %}
