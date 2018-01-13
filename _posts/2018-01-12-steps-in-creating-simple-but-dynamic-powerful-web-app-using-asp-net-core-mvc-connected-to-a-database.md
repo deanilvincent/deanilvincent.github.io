@@ -74,7 +74,7 @@ Similar to this image
 
 <img src="https://user-images.githubusercontent.com/10904957/34874184-ef9fbbec-f7d2-11e7-9122-300211a5e70e.PNG" />
 
-We include this DotNeCliToolReference because we'll rely on git, or powershell or cmd in our code first entity commands. This is also a best practice as far as I know.
+We include this DotNeCliToolReference because we'll rely on git bash, or powershell or cmd in our code first entity commands. This is also a best practice as far as I know.
 
 2.3 Save the file.
 
@@ -154,7 +154,7 @@ Since our connection string was created in our db context.
 
 ### 7.0 Locate your Project using Command Line
 
-7.1 Open your installed git bash by search in our windows "Git Bash" (You can use Windows PowerShell)
+7.1 Open your installed git bash by searching in our windows "Git Bash" (You can use Windows PowerShell)
 
 7.2 Locate your project with this following commands until you reach the main project files.
 
@@ -211,6 +211,6 @@ After you received a "Done." message, everything works fine.
 
 <img src="https://user-images.githubusercontent.com/10904957/34877040-42d7b452-f7df-11e7-8395-7a42a273f418.PNG" />
 
-Voila! you're done created creating your ASP.NET Core Web App connected to a Database.
+Voila! you're done creating your ASP.NET Core Web App connected to a Database.
 
-If you have some questions or comments, please drop it below. :)
+If you have some questions or comments, please drop it below 👇 :)
