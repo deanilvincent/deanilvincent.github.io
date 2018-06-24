@@ -152,4 +152,6 @@ Other available service commands are:
 
 Voila! we host our published ASP.NET Core App without using IIS but alternatively, we're using Windows Services.
 
+Blog reference: <a href="https://minilink.net/0Hr3rqo">https://minilink.net/0Hr3rqo</a>
+
 If you have some questions or comments, please drop it below 👇 :)
