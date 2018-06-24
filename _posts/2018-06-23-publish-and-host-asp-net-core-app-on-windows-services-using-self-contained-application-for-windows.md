@@ -66,7 +66,7 @@ Additional Info: This means, that we're targetting to generate a publish output 
 
 3.1 Open nuget package manager and search for `Microsoft.AspNetCore.Hosting.WindowsServices`
 
-3.1 Choose what version of Microsoft.AspNetCore.Hosting.WindowsServices <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/">(Nuget.org)</a>, then click "Install"
+3.1 Choose what version of package <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/">(package link)</a>, then click "Install"
 
 <img src="https://user-images.githubusercontent.com/10904957/41809718-d939fb48-7724-11e8-9234-239905905248.PNG"/>
 
