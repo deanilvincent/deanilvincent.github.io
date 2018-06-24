@@ -22,7 +22,7 @@ It's important that you have a good environment with installed:
 
 ### Overview of what we're going to create:
 
-<strong>Target Output:</strong> "Publish & Host ASP.NET Core App running on Windows Services Manager"
+<strong>Target Output:</strong> "Publish & Host ASP.NET Core App on Windows Services Manager"
 
 <strong>Aim:</strong> After you finish these simple steps, you will be able to alternatively use Windows Services to host your ASP.NET Core app.
 
@@ -56,10 +56,10 @@ Similar to this image
 
 2.3 Save the file.
 
-Additional Info: This means, that we're targetting to generate a publish output for windows only. If you want to target multiple runtime identifiers you can do the example code snippet below:
+Additional Info: This means, that we're targeting to generate a publish output for windows only or what we called self-contained app. If you want to target multiple runtime identifiers you can do the example code snippet below:
 {{highlight ruby linenos}}
       <RuntimeIdentifier>win10-x64;ubuntu.16.10-x64</RuntimeIdentifier>
-      // We are targetting both windows and ubuntu.
+      // We are targeting both windows and ubuntu.
 {{endhighlight}}
 
 ### 3.0 Install Nuget Package
@@ -72,7 +72,7 @@ Additional Info: This means, that we're targetting to generate a publish output 
 
 ### 4.0 Modify Program.cs
 
-4.1 Open the Program.cs of the project and modify the `public static void Main(string[] args){...}` method and paste the following codes below:
+4.1 Open the Program.cs of the project and modify the `public static void Main(string[] args){...}` method then paste the following codes below:
 
 {{highlight ruby linenos}}
     using Microsoft.AspNetCore.Hosting;
@@ -98,7 +98,7 @@ Additional Info: This means, that we're targetting to generate a publish output 
 
 ### 5.0 Publishing the project
 
-5.1 Open the command line or powershell and target your project location.
+5.1 Open the command line or powershell and located your project path.
 Similar to the image below:
 <img src="https://user-images.githubusercontent.com/10904957/41809723-ebdc796a-7724-11e8-9ee0-1e35013e13c1.PNG" />
 
