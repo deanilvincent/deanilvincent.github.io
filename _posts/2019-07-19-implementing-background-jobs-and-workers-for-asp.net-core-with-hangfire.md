@@ -26,9 +26,9 @@ So let's implement this cool package in our ASP.NET Core Web App.
 
 ### FTF (First Things First)
 
-Make sure you have a project solution where we can install this package. You can use your existing project if you want but I recommend you create a new fresh sample project for this demo. If you're finish, let's get started!
+Make sure you have a ASP.NET Core project solution (MVC or API) where we can install this package. You can use your existing project if you want but I recommend you create a new fresh sample project for this demo. If you're ready, let's get started!
 
-### 1.0 Deploy your Vue.JS App
+### 1.0 Installing the Package
 
 1.1 Open the terminal and execute the command
 
