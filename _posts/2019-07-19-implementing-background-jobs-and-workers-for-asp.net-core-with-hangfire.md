@@ -26,19 +26,15 @@ So let's implement this cool package in our ASP.NET Core Web App.
 
 ### FTF (First Things First)
 
-Make sure you have a project solution where we can install this package. You can use your existing project if you want but I recommend you create a new fresh sample project for this demo. If you're finish, let's get started!
+Make sure you have a ASP.NET Core project solution (MVC or API) where we can install this package. You can use your existing project if you want but I recommend you create a new fresh sample project for this demo. If you're ready, let's get started!
 
-### 1.0 Deploy your Vue.JS App
+### 1.0 Installing the Package
 
-1.1 Open the terminal and execute the command
+1.1 Open the Nuget Package Manager and search for the package `Hangfire` and click install. So here we have a version 1.7.5
 
-{{highlight ruby linenos}}
-npm run build
-{{endhighlight}}
+<img src="https://user-images.githubusercontent.com/10904957/61585630-faa1e680-ab92-11e9-80ef-11fd8f94adac.JPG" />
 
-<img src="https://user-images.githubusercontent.com/10904957/61218941-b8694700-a745-11e9-9980-52e93d7157cd.JPG" />
-
-If building is successfully, you can find the folder with a name "dist".
+Optionally, you can use the Nuget Package Manager console and type in `Install-Package HangFire -Version 1.7.5`
 
 1.2 Copy the dist folder content and move it in a folder in Drive C:
 
