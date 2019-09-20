@@ -1,0 +1,146 @@
+I"�<p>Here are some simple insights about Data Binding and MVVM. If you already know about this topic or have heard about this before, I hope I could still contribute some ideas to you. If not, this basic representations will help you understand in a simplest manner.</p>
+
+<h2 id="simple-understanding-about-data-binding">Simple Understanding about Data Binding</h2>
+
+<h3 id="data-binding">Data Binding,</h3>
+
+<ul>
+  <li>Allow properties of two objects to be linked so that a change in one causes change in the other.</li>
+  <li>One of the most important markup extensions in Xamarin.Forms and in other xaml based development tools.</li>
+  <li>Is also a process that establishes a connection between the application UI and business logic. - <a href="https://msdn.microsoft.com/en-us/library/ms752347(v=vs.110).aspx">MSDN</a></li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26749864/5dd10418-4847-11e7-97f0-329cdaec09d6.png" /></p>
+
+<p>In this image below,</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26749893/15068112-4848-11e7-85de-11db192e059e.png" /></p>
+
+<p>The Data Binding serves as the bridge between the “View or UI” and the “Object”</p>
+
+<p>“View or UI” so simply say, the “page” represents the binding target while the “Object” or we can say, the binding source.</p>
+
+<p>Properties in Object represents,</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="n">string</span>
+<span class="n">int</span>
+<span class="n">bool</span>
+<span class="n">decimal</span>
+<span class="sr">//</span> <span class="n">and</span> <span class="n">other</span> <span class="no">C</span><span class="c1"># property data types</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Properties in Target represents available bindable ui elements.</p>
+
+<p>In Xamarin Forms here are some of the common bindable ui elements or properties,</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="no">Text</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectSource</span><span class="p">}</span>
+<span class="no">TextColor</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectSource</span><span class="p">}</span>
+<span class="no">Command</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectCommandSource</span><span class="p">}</span>
+<span class="no">ItemSource</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectSource</span><span class="p">}</span>
+<span class="no">Content</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectContent</span><span class="p">}</span>
+<span class="no">BackgroundColor</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectSource</span><span class="p">}</span>
+<span class="no">Color</span><span class="o">=</span><span class="p">{</span><span class="no">Binding</span> <span class="n">objectSource</span><span class="p">}</span>
+<span class="sr">//</span> <span class="n">and</span> <span class="n">much</span> <span class="n">much</span> <span class="n">more</span> <span class="o">...</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>The image below, shows a simple visualization in implementing data binding.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26750045/620b6e48-484b-11e7-8cf2-f683328f4882.png" /></p>
+
+<h3 id="what-are-the-main-benefits">What are the Main Benefits?</h3>
+
+<ul>
+  <li>Binding framework synchonizes automatically.</li>
+  <li>No need to write bunch of save and update codes in your app which is very time consuming.</li>
+  <li>Changes in source are pushed to the target directly.</li>
+</ul>
+
+<h3 id="establishing-data-binding-in-two-step-process">Establishing Data Binding in Two Step Process:</h3>
+
+<ol>
+  <li>The <u>BindingContext</u> <i>(property target must be set to the source)</i></li>
+  <li><u>Binding</u> Markup extension <i>(Binding must established between the target and the source)</i></li>
+</ol>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26750251/55ef8cac-4850-11e7-89c1-401ac51f0acb.png" /></p>
+
+<h3 id="common-mode-types">Common Mode Types</h3>
+
+<ul>
+  <li>OneWay
+    <ul>
+      <li>From Source to Target only.</li>
+    </ul>
+  </li>
+  <li>TwoWay
+    <ul>
+      <li>From Source to Target and Target to Source.</li>
+    </ul>
+  </li>
+  <li>OneWayToSource
+    <ul>
+      <li>From Target to Source only.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="other-benefits">Other Benefits?</h3>
+
+<ul>
+  <li>Data Conversion.</li>
+  <li>Output Formatting.</li>
+</ul>
+
+<h2 id="simple-understanding-about-mvvm-model-view-view-model">Simple Understanding about MVVM (Model-View-View-Model)</h2>
+
+<ul>
+  <li>Is an Architectural Design Pattern.</li>
+  <li>MVVM was invented in XAML in mind.</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26750273/d9cd4208-4850-11e7-940c-89d451eef9fb.png" /></p>
+
+<p>From Bindings to MVVM</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26750295/6e158fba-4851-11e7-8023-d7ae05c33c53.png" /></p>
+
+<p>In this image, Model is compose of CustomerName(string) and CustomerAge(int). ViewModel represents the connection from Model to View. We use Notify Property Changed to automatically push the changes back and forth from View to ViewModel vice versa and the Binding acts like the agent to connect the ViewModel and the View.</p>
+
+<p>You can also see the UI Button from View that it has a bindable button with a command stored in the ViewModel.</p>
+
+<h3 id="here-are-some-benefits-of-mvvm">Here are some benefits of MVVM:</h3>
+
+<ul>
+  <li>Separation of concerns​.</li>
+  <li>Developers can create unit tests for the view model w/o using the view​.</li>
+  <li>Easy to redesign the UI of the app w/o touching the code behind because the view is implemented entirely in XAML​.</li>
+  <li>Since it’s architectural design pattern, it’s maintainable solution.</li>
+</ul>
+
+<h3 id="some-available-mvvm-frameworks-for-xamarin-with-links">Some Available MVVM Frameworks for Xamarin (with Links)</h3>
+
+<ul>
+  <li><a href="https://github.com/MvvmCross/MvvmCross">MvvmCross</a></li>
+  <li><a href="https://channel9.msdn.com/Shows/XamarinShow/The-Xamarin-Show-12-MVVM-Light-and-Xamarin-with-Laurent-Bugnion">MvvmLight with Video</a></li>
+  <li><a href="https://github.com/reactiveui/ReactiveUI">ReactiveUI</a></li>
+  <li><a href="https://github.com/PrismLibrary/Prism">Prism</a></li>
+  <li><a href="https://github.com/rid00z/FreshMvvm#freshmvvm-for-xamarinforms">FreshMVVM</a></li>
+  <li><a href="https://github.com/xamvvm/xamvvm">XamVVM</a></li>
+  <li><a href="https://github.com/exrin/Exrin">Exrin</a></li>
+</ul>
+
+<p>Thank you for reading. I hope you’ve learned from me. Feel free to comment below!</p>
+:ET

@@ -1,0 +1,414 @@
+I"ab<p>This is the continuation of <a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part1/">“Simple Weather App in Xamarin Forms with MVVM using Weather API Part 1”</a></p>
+
+<p>This part is where we will going to start coding and building our application.</p>
+
+<h2 id="development-phase">Development Phase</h2>
+
+<h3 id="50-implementing-weatherapi">5.0 Implementing WeatherAPI</h3>
+
+<p>5.1 Right click the folder “WeatherRestClient” and add new class file (Add -&gt; Class…) and name it as “OpenWeatherMap” since we’re going to use their api service.</p>
+
+<p>5.2 Inside the file, add these following codes including your api link and key.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="n">using</span> <span class="no">Newtonsoft</span><span class="o">.</span><span class="no">Json</span><span class="p">;</span>
+<span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">Net</span><span class="o">.</span><span class="no">Http</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">WeatherRestClient</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">OpenWeatherMap</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span>
+    <span class="p">{</span>
+        <span class="kp">private</span> <span class="n">const</span> <span class="n">string</span> <span class="no">OpenWeatherApi</span> <span class="o">=</span> <span class="s2">"http://api.openweathermap.org/data/2.5/weather?q="</span><span class="p">;</span>
+        <span class="kp">private</span> <span class="n">const</span> <span class="n">string</span> <span class="no">Key</span> <span class="o">=</span> <span class="s2">"653b1f0bf8a08686ac505ef6f05b94c2"</span><span class="p">;</span>
+        <span class="no">HttpClient</span> <span class="n">_httpClient</span> <span class="o">=</span> <span class="n">new</span> <span class="no">HttpClient</span><span class="p">();</span>
+
+        <span class="kp">public</span> <span class="n">async</span> <span class="no">Task</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="no">GetAllWeathers</span><span class="p">(</span><span class="n">string</span> <span class="n">city</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">var</span> <span class="n">json</span> <span class="o">=</span> <span class="n">await</span> <span class="n">_httpClient</span><span class="o">.</span><span class="no">GetStringAsync</span><span class="p">(</span><span class="no">OpenWeatherApi</span> <span class="o">+</span> <span class="n">city</span> <span class="o">+</span> <span class="s2">"&amp;APPID="</span> <span class="o">+</span> <span class="no">Key</span><span class="p">);</span>
+            <span class="n">var</span> <span class="n">getWeatherModels</span> <span class="o">=</span> <span class="no">JsonConvert</span><span class="o">.</span><span class="no">DeserializeObject</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">getWeatherModels</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="60-creating-model-classes-based-on-weather-api">6.0 Creating Model Classes Based on Weather API</h3>
+
+<p>In OpenWeatherMapAPI, you can see the Json format for the possible model names using Advanced REST Client (or other tools)</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/27836532-60e29b10-6112-11e7-8587-0db252f1afff.png" /></p>
+
+<p><i>Using this kind of tool, we are able to have the good visualization of “GET” result of our weather api. <i></i></i></p>
+
+<p>For this demo, we’re going to use this single (class file) representing our main model:</p>
+
+<ul>
+  <li>WeatherMainModel.cs</li>
+</ul>
+
+<p>6.1 Create this class file inside our “Models” folder by right clicking the folder -&gt; Add -&gt; Class… and name it as “WeatherMainModel.cs”</p>
+
+<p>By looking at the “Get” response result from our web api, it returns different json properties. So, we need to add them inside our model in order to use them inside our project.</p>
+
+<p>6.2 Add these following code snippets inside your WeatherMainModel class.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="n">using</span> <span class="no">Newtonsoft</span><span class="o">.</span><span class="no">Json</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">Models</span>
+<span class="p">{</span>
+    <span class="sr">//</span> <span class="n">serves</span> <span class="n">as</span> <span class="n">our</span> <span class="n">main</span> <span class="n">model</span> <span class="k">in</span> <span class="n">centralizing</span> <span class="n">different</span> <span class="n">classes</span>
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherMainModel</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"name"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="nb">name</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kp">public</span> <span class="no">WeatherTempDetails</span> <span class="n">main</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kp">public</span> <span class="no">List</span><span class="o">&lt;</span><span class="no">WeatherSubDetails</span><span class="o">&gt;</span> <span class="n">weather</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kp">public</span> <span class="no">WeatherWindDetails</span> <span class="n">wind</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kp">public</span> <span class="no">WeatherSysDetails</span> <span class="n">sys</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherSubDetails</span>
+    <span class="p">{</span>        
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"main"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">main</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"description"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">description</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"icon"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">icon</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherSysDetails</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"country"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">country</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherTempDetails</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"temp"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">temp</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"humidity"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">humidity</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherWindDetails</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"speed"</span><span class="p">)]</span>
+        <span class="kp">public</span> <span class="n">string</span> <span class="n">speed</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>We use different classes in order to match them to our web api request.</p>
+
+<h3 id="70-creating-service-handler-file-between-weathermainmodel-openweathermap-restclient-and-viewmodels">7.0 Creating Service Handler File between WeatherMainModel, OpenWeatherMap RestClient and ViewModels.</h3>
+
+<p>7.1 Go to “ServicesHandler” folder and add new class file by right clicking the folder -&gt; Add -&gt; Class… and name it as “WeatherServices.cs”</p>
+
+<p>7.2 Add this code snippets for WeatherServices.cs</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="n">using</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">Models</span><span class="p">;</span>
+<span class="n">using</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">WeatherRestClient</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">ServicesHandler</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherServices</span>
+    <span class="p">{</span>
+        <span class="no">OpenWeatherMap</span><span class="o">&lt;</span><span class="no">WeatherMainModel</span><span class="o">&gt;</span> <span class="n">_openWeatherRest</span> <span class="o">=</span> <span class="n">new</span> <span class="no">OpenWeatherMap</span><span class="o">&lt;</span><span class="no">WeatherMainModel</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="kp">public</span> <span class="n">async</span> <span class="no">Task</span><span class="o">&lt;</span><span class="no">WeatherMainModel</span><span class="o">&gt;</span> <span class="no">GetWeatherDetails</span><span class="p">(</span><span class="n">string</span> <span class="n">city</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">var</span> <span class="n">getWeatherDetails</span> <span class="o">=</span> <span class="n">await</span> <span class="n">_openWeatherRest</span><span class="o">.</span><span class="no">GetAllWeathers</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">getWeatherDetails</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="80-implementing-inotifypropertychanged">8.0 Implementing INotifyPropertyChanged</h3>
+
+<p>8.1 Go to “ViewModels” folder and add new class file by right clicking the folder -&gt; Add -&gt; Class… and name it as “WeatherViewModel.cs”</p>
+
+<p>8.2 Add NotifyProperty interface in your class in order to notify the binding client that the property has changed value.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">ComponentModel</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">ViewModels</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="k">class</span> <span class="nc">WeatherViewModel</span> <span class="p">:</span> <span class="no">INotifyPropertyChanged</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>8.3 Inside the WeatherViewModel class, add this code snippet in order to use the method OnPropertyChanged()</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="sr">//</span> <span class="n">import</span> <span class="n">this</span> <span class="k">for</span> <span class="no">CallerMemberName</span>
+<span class="o">...</span>
+<span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">Runtime</span><span class="o">.</span><span class="no">CompilerServices</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="n">event</span> <span class="no">PropertyChangedEventHandler</span> <span class="no">PropertyChanged</span><span class="p">;</span>
+
+<span class="kp">protected</span> <span class="n">virtual</span> <span class="n">void</span> <span class="no">OnPropertyChanged</span><span class="p">([</span><span class="no">CallerMemberName</span><span class="p">]</span> <span class="n">string</span> <span class="n">propertyName</span> <span class="o">=</span> <span class="n">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="no">PropertyChanged</span><span class="p">?</span><span class="o">.</span><span class="no">Invoke</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">new</span> <span class="no">PropertyChangedEventArgs</span><span class="p">(</span><span class="n">propertyName</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="90-creating-properties-for-model-and-for-the-string-property-of-the-city-string-parameter">9.0 Creating Properties for Model and for the String Property of the “city” (string parameter)</h3>
+
+<p>9.1 Inside the WeatherViewModel, add this following code snippets.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+</pre></td><td class="code"><pre><span class="sr">//</span> <span class="n">import</span> <span class="n">these</span> <span class="n">following</span> <span class="n">references</span>
+<span class="o">...</span>
+<span class="n">using</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">Models</span><span class="p">;</span>
+<span class="n">using</span> <span class="no">SimpleCrossWeatherApp</span><span class="o">.</span><span class="no">ServicesHandler</span><span class="p">;</span>
+
+<span class="no">WeatherServices</span> <span class="n">_weatherServices</span> <span class="o">=</span> <span class="n">new</span> <span class="no">WeatherServices</span><span class="p">();</span>
+
+<span class="kp">private</span> <span class="no">WeatherMainModel</span> <span class="n">_weatherMainModel</span><span class="p">;</span>  <span class="sr">//</span> <span class="k">for</span> <span class="n">xaml</span> <span class="nb">binding</span>
+<span class="kp">public</span> <span class="no">WeatherMainModel</span> <span class="no">WeatherMainModel</span>
+<span class="p">{</span>
+    <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_weatherMainModel</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">set</span>
+    <span class="p">{</span>
+        <span class="n">_weatherMainModel</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="no">IconImageString</span> <span class="o">=</span> <span class="s2">"http://openweathermap.org/img/w/"</span> <span class="o">+</span> <span class="n">_weatherMainModel</span><span class="p">.</span><span class="nf">weather</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">icon</span> <span class="o">+</span> <span class="s2">".png"</span><span class="p">;</span> <span class="sr">//</span> <span class="n">fetch</span> <span class="n">weather</span> <span class="n">icon</span> <span class="n">image</span>
+        <span class="no">OnPropertyChanged</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kp">private</span> <span class="n">string</span> <span class="n">_city</span><span class="p">;</span>   <span class="sr">//</span> <span class="k">for</span> <span class="n">entry</span> <span class="nb">binding</span> <span class="n">and</span> <span class="k">for</span> <span class="nb">method</span> <span class="n">parameter</span> <span class="n">value</span>
+<span class="kp">public</span> <span class="n">string</span> <span class="no">City</span>
+<span class="p">{</span>
+    <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_city</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">set</span>
+    <span class="p">{</span>
+        <span class="n">_city</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="no">Task</span><span class="o">.</span><span class="no">Run</span><span class="p">(</span><span class="n">async</span><span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+            <span class="n">await</span> <span class="no">InitializeGetWeatherAsync</span><span class="p">();</span>
+        <span class="p">});</span>
+        <span class="no">OnPropertyChanged</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kp">private</span> <span class="n">string</span> <span class="n">_iconImageString</span><span class="p">;</span> <span class="sr">//</span> <span class="k">for</span> <span class="n">weather</span> <span class="n">icon</span> <span class="n">image</span> <span class="n">string</span> <span class="nb">binding</span>
+<span class="kp">public</span> <span class="n">string</span> <span class="no">IconImageString</span>
+<span class="p">{</span>
+    <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_iconImageString</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">set</span> 
+    <span class="p">{</span> 
+        <span class="n">_iconImageString</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="no">OnPropertyChanged</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kp">private</span> <span class="n">bool</span> <span class="n">_isBusy</span><span class="p">;</span>   <span class="sr">//</span> <span class="k">for</span> <span class="n">showing</span> <span class="n">loader</span> <span class="k">when</span> <span class="n">the</span> <span class="n">task</span> <span class="n">is</span> <span class="n">initializing</span>
+<span class="kp">public</span> <span class="n">bool</span> <span class="no">IsBusy</span>
+<span class="p">{</span>
+    <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_isBusy</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">set</span>
+    <span class="p">{</span>
+        <span class="n">_isBusy</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="no">OnPropertyChanged</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="100-adding-method-to-get-the-returning-weather-details-from-weatherservices">10.0 Adding Method to get the Returning Weather Details from WeatherServices</h3>
+
+<p>10.1 Add this following code snippets inside the WeatherViewModel</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="kp">private</span> <span class="n">async</span> <span class="no">Task</span> <span class="no">InitializeGetWeatherAsync</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">try</span>
+    <span class="p">{</span>
+        <span class="no">IsBusy</span> <span class="o">=</span> <span class="kp">true</span><span class="p">;</span> <span class="sr">//</span> <span class="n">set</span> <span class="n">the</span> <span class="n">ui</span> <span class="n">property</span> <span class="s2">"IsRunning"</span> <span class="n">to</span> <span class="kp">true</span><span class="p">(</span><span class="n">loading</span><span class="p">)</span> <span class="k">in</span> <span class="no">Xaml</span> <span class="no">ActivityIndicator</span> <span class="no">Control</span>
+        <span class="no">WeatherMainModel</span> <span class="o">=</span> <span class="n">await</span> <span class="n">_weatherServices</span><span class="o">.</span><span class="no">GetWeatherDetails</span><span class="p">(</span><span class="n">_city</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">finally</span>
+    <span class="p">{</span>
+        <span class="no">IsBusy</span> <span class="o">=</span> <span class="kp">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>On the last page, we’ll going to create our UI Page for our simple weather app</p>
+
+<p><a href="https://deanilvincent.github.io/2017/07/03/simple-weather-app-in-xamarin-forms-with-mvvm-using-weather-api-part3/">Simple Weather App in Xamarin Forms with MVVM using Weather API Part 3</a></p>
+
+<p>If you have some questions or comments regarding the Part 2 page, please drop it below. :)</p>
+:ET

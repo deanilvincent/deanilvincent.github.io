@@ -1,0 +1,214 @@
+I"K,<p><img src="https://user-images.githubusercontent.com/10904957/32660163-b878c138-c65c-11e7-8241-3494e874ef3f.jpeg" alt-image="Mark Deanil Vicente Blog Map Image" /></p>
+
+<p>In you’re planning to implement geolocation and maps to your cross platform project, it is important that you install packages for maps and geolocation and then setup your project first in order to consume maps and geolocation integration properly. This simple blog post will help you how to install and configure your Android, IOS and UWP project.</p>
+
+<h3 id="just-to-give-you-an-idea">Just to give you an idea</h3>
+
+<p>Each mobile platform has its own geolocation and map feature.</p>
+
+<ul>
+  <li>Android has <a href="https://developers.google.com/maps/">Google Maps</a></li>
+  <li>IOS has <a href="https://www.apple.com/ios/maps/">Apple Maps</a></li>
+  <li>UWP or Universal Windows Platform has <a href="https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api">Bing Maps</a></li>
+</ul>
+
+<p>These maps offer API feature wherein we can consume the information to different platforms and devices.</p>
+
+<h3 id="what-do-we-need-to-do-first">What do we need to do first?</h3>
+<p>It’s important to download and install the packages for maps and geolocation first that support xamarin forms.</p>
+
+<h3 id="why-we-need-to-setup-our-projects">Why we need to setup our projects?</h3>
+
+<p>Here are some of the important keys why we need to setup the project to check if the device has:</p>
+
+<ol>
+  <li>Internet connection.</li>
+  <li>Allow location.</li>
+  <li>Network connection.</li>
+  <li>Api map key.</li>
+</ol>
+
+<h3 id="overview-of-what-were-going-to-create">Overview of what we’re going to create:</h3>
+
+<p><strong>Target Output:</strong> “Cross Platform Project Ready to Consume Geolocation and Maps in Every Platform Project”</p>
+
+<p><strong>Aim:</strong> After you finish this simple steps, you are now ready to call the geolocation and maps in your xamarin forms project.</p>
+
+<p>If you’re ready, let’s get started!</p>
+
+<h2 id="installing-maps-and-geolocation">Installing Maps and Geolocation</h2>
+
+<h3 id="10-search-and-install-the-maps-and-geolocation-package">1.0 Search and Install the Maps and Geolocation Package</h3>
+<p>1.1 Right click the “Solution” and choose “Manage NuGet Packages for Solution…”</p>
+
+<p>1.2 Search for “Geolocator” and install the package to all project.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32690363-85f9c994-c730-11e7-82ae-f6da6842aac7.PNG" /></p>
+
+<p><i>(Project <a href="https://github.com/jamesmontemagno/GeolocatorPlugin">Link</a>)</i></p>
+
+<p>1.3 Search for “Xamarin.Forms.Maps” and install the package to all project.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32690362-85cccc64-c730-11e7-9fd2-7fd185892596.PNG" /></p>
+
+<h2 id="setting-up-the-environment">Setting Up the Environment</h2>
+
+<h3 id="--for-android--">- For Android -</h3>
+
+<h3 id="10-generate-google-maps-api-key">1.0 Generate Google Maps Api Key</h3>
+
+<p>1.1 Go to <a href="https://console.cloud.google.com">Google Cloud Console</a> and login with your google account.</p>
+
+<p>1.2 In the search box of your console, search “Google Maps Android API” and click it.</p>
+
+<p>1.3 Click enable and it will redirect you to a new page.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32661766-205a16de-c663-11e7-9a4c-7a636693def5.png" /></p>
+
+<p>1.4 Click the button “Create Credentials” on the upper right corner.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32661880-7cf6db2a-c663-11e7-83e5-eb21aa857e00.png" /></p>
+
+<p>1.5 And simply click the button “What credentials do I need?” since the Google Maps Android API is already selected by default of the page.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32661958-ccb7df38-c663-11e7-9e6a-de4a1bbe4dfe.png" /></p>
+
+<p>1.6 After you finish clicking the button, you’ll get your generated API key.</p>
+
+<p>1.7 Copy the generated api key.</p>
+
+<p>Optional: If you want to restrict the use of your api key for specific device, you can choose the “Restrict Key.”</p>
+
+<h3 id="20-pasting-the-key-inside-the-android-project">2.0 Pasting the Key inside the Android Project</h3>
+
+<p>2.1 Go to you android project.</p>
+
+<p>2.2 Expand the Properties and look for AndroidManifest.xml.</p>
+
+<p>2.3 Paste this code inside the “&lt; application android:label=”YourProjectName.Android” &gt;…&lt;/ application &gt;”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="n">application</span> <span class="n">android</span><span class="ss">:label</span><span class="o">=</span><span class="s2">"YourProjectName.Android"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">meta</span><span class="o">-</span><span class="n">data</span> <span class="n">android</span><span class="ss">:name</span><span class="o">=</span><span class="s2">"com.google.android.geo.API_KEY"</span> <span class="n">android</span><span class="ss">:value</span><span class="o">=</span><span class="s2">"PASTEYOURGENERATEDKEYHERE"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/application&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="30-checking-things-inside-the-android-properties">3.0 Checking things inside the Android Properties</h3>
+
+<p>3.1 Go to “Android Properties” and choose “Android Manifest”</p>
+
+<p>Check the following:</p>
+<ul>
+  <li>ACCESS_COARSE_LOCATION</li>
+  <li>ACCESS_FINE_LOCATION</li>
+  <li>ACCESS_LOCATION_EXTRA_COMMANDS</li>
+  <li>ACCESS_MOCK_LOCATION</li>
+  <li>ACCESS_NETWORK_STATE</li>
+  <li>ACCESS_WIFI_STATE</li>
+  <li>INTERNET</li>
+</ul>
+
+<p>3.2 Ctrl+S to save the changes.</p>
+
+<h3 id="40-add-code-snippet-inside-the-mainactivitycs">4.0 Add code snippet inside the MainActivity.cs</h3>
+
+<p>4.1 Locate and open the MainActivity.cs file</p>
+
+<p>4.2 Paste this above the “LoadApplication(new App());”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">global</span><span class="o">::</span><span class="no">Xamarin</span><span class="o">.</span><span class="no">FormsMaps</span><span class="o">.</span><span class="no">Init</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">bundle</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Reminder: Running Google Maps in Android Emulator requires “Google Play Services.” Download Gapps Zip file <a href="http://www.teamandroid.com/gapps/">here</a> and drag-and-drop to your running android emulator.</p>
+
+<h3 id="--for-ios--">- For IOS -</h3>
+
+<h3 id="10-updating-the-infoplist">1.0 Updating the Info.plist</h3>
+<p>1.1 Go to iOS Project.</p>
+
+<p>1.2 Locate the Info.plist and right click then choose “Open With”…</p>
+
+<p>1.3 Choose editor type for xml.</p>
+
+<p>1.4 Paste this code after the “&lt; dict &gt;”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="no">NSLocationAlwaysUsageDescription</span><span class="o">&lt;</span><span class="sr">/key&gt;
+    &lt;string&gt;Can we use your location&lt;/s</span><span class="n">tring</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span><span class="no">NSLocationWhenInUseUsageDescription</span><span class="o">&lt;</span><span class="sr">/key&gt;
+    &lt;string&gt;We are using your location&lt;/s</span><span class="n">tring</span><span class="o">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>1.4 Save the file.</p>
+
+<h3 id="20-updating-the-appdelegatecs">2.0 Updating the AppDelegate.cs</h3>
+
+<p>2.1 Locate the file “AppDelegate.cs”</p>
+
+<p>2.2 Paste this above LoadApplication(new App());</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">global</span><span class="o">::</span><span class="no">Xamarin</span><span class="o">.</span><span class="no">FormsMaps</span><span class="o">.</span><span class="no">Init</span><span class="p">();</span>  
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>2.3 Save the file.</p>
+
+<h3 id="--for-uwp-universal-windows-platform--">- For UWP (Universal Windows Platform) -</h3>
+
+<h3 id="10-generate-bing-maps-api-key">1.0 Generate Bing Maps Api Key</h3>
+
+<p>1.1 Go to <a href="https://www.bingmapsportal.com/">Bing Maps Portal</a> and sign in with you microsoft account.</p>
+
+<p>1.2 After you successfully log in, choose the “My account” -&gt; “My Keys”</p>
+
+<p>1.3 Click the “here” to create a new key</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32685519-f4bdbf06-c6cd-11e7-885c-1d83b33ba9db.png" /></p>
+
+<p>1.4 Input the application name</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32685536-68c91648-c6ce-11e7-8e1a-417575beb839.png" /></p>
+
+<p>Make sure to choose “Universal Windows App” but you can choose different Application type depending on your needs.</p>
+
+<p>1.5 And lastly, click the button “Create” to finish generating the key.</p>
+
+<p>When you’re done, the details of your bing map api will be shown below.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/32685571-20e74812-c6cf-11e7-9dcb-9e7e3f39f398.png" /></p>
+
+<h3 id="20-updating-the-mainpagexamlcs">2.0 Updating the MainPage.xaml.cs</h3>
+
+<p>2.1 Go to UWP project.</p>
+
+<p>2.2 Paste this inside the constructor of MainPage.xaml.cs and after the “this.InitializeComponent();”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">global</span><span class="o">::</span><span class="no">Xamarin</span><span class="o">.</span><span class="no">FormsMaps</span><span class="o">.</span><span class="no">Init</span><span class="p">(</span><span class="s2">"PASTEHERETHEAPIKEYYOUGENERATED"</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>2.3 Save the file.</p>
+
+<h3 id="30-updating-the-packageappxmanifest">3.0 Updating the Package.appxmanifest</h3>
+
+<p>3.1 Locate and click the Package.appxmanifest file and choose “Capabilities”</p>
+
+<p>3.2 Check the following:</p>
+
+<ul>
+  <li>Internet</li>
+  <li>Location</li>
+</ul>
+
+<p>3.3 Save the file.</p>
+
+<p>Now you’re done installing and configuring the files per project. The next step is do the codings to fully implement maps and geolocation to your application.</p>
+
+<p>If you have some questions or comments, please drop it below. :)</p>
+:ET

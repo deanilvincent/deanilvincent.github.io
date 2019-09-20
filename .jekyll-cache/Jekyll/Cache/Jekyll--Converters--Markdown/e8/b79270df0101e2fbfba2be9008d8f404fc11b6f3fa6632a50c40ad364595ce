@@ -1,0 +1,84 @@
+I"�<p>Last May 08, 2017 at Microsoft Build Day 2 Keynote, Xamarin Live Player was publicly announced and presented. Many Xamarin Developers were amazed by this release and many tech blog sites shared this cool innovation update from Xamarin.</p>
+
+<p>If you’re new in Xamarin Development or haven’t heard about Xamarin Live Player before, you should be wondering and asking yourself now, “Then why Xamarin Live Player and What is the purpose of this Xamarin Live Player?”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26500191/96763aa8-4267-11e7-864d-9b02abb199b3.png" /></p>
+
+<p>and he added,</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26500681/6a2b3b04-4269-11e7-8d1c-0df523b8469f.png" /></p>
+
+<p><i>by: Joseph Hill</i></p>
+
+<p>To make it simpler, Xamarin Live Player will make your debugging really fast and easy using your physical device. The good thing about this is that, you can directly test your app and see how your app behaves in real device.</p>
+
+<h2 id="basic-steps-in-setting-up-your-visual-studio-for-xamarin-live-player">Basic Steps In Setting Up Your Visual Studio For Xamarin Live Player</h2>
+
+<h3 id="10-get-the-app-on-google-play-store-or-appstore">1.0 Get The App on Google Play Store or AppStore</h3>
+
+<ul>
+  <li>
+    <p>Google Play: <a href="https://play.google.com/store/apps/details?id=com.xamarin.live">Download in Google Play</a></p>
+  </li>
+  <li>
+    <p>AppStore: <a href="https://itunes.apple.com/us/app/xamarin-live-player/id1228841832?ls=1&amp;mt=8">Download in AppStore</a></p>
+  </li>
+</ul>
+
+<h3 id="20-download-and-use-preview-version-of-visual-studio-2017-v153-if-you-already-have-visual-studio-2017-v153-skip-this">2.0 Download and Use Preview Version Of Visual Studio 2017 v15.3 (If you already have Visual Studio 2017 v.15.3, skip this)</h3>
+
+<p>Since the Xamarin Live Player is only working for Visual Studio 2017 v.15.3 (Preview as of May 2017), you need to install a new Visual Studio 2017 v.15.3.</p>
+
+<p>2.1 Here’s the link of version 15.3 - Preview: <a href="https://www.visualstudio.com/en-us/news/releasenotes/vs2017-preview-relnotes">https://www.visualstudio.com/en-us/news/releasenotes/vs2017-preview-relnotes</a></p>
+
+<p>2.2 After downloading the installer, it will ask you to name the preview visual studio 2017 to avoid conflict and to your visual studio 2017 15.2 (if you already installed that).</p>
+
+<p>Here in my case, I just named it as 2,</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26501544/85dad2b2-426c-11e7-881d-974fe230a9f6.PNG" /></p>
+
+<p>2.3 Choose the Mobile development with .NET and check some of the features you want to be included.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26501832/48d4caca-426d-11e7-8dd7-01ff90cea9d6.PNG" /></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26501840/4b0a2efc-426d-11e7-9f0a-70e6516fbf0c.PNG" /></p>
+
+<p>2.4 After it is downloaded and installed, you can now run your Visual Studio 2017 v.15.3</p>
+
+<h3 id="30-working-on-extensions-and-updates">3.0 Working on Extensions and Updates</h3>
+
+<p>3.1 First you need to download this, <a href="https://marketplace.visualstudio.com/items?itemName=Xamarin.XamarinUpdater">Xamarin Updater</a> to include it inside the Updates.</p>
+
+<p>3.2 Click the downloaded installer and the VSIX Installer dialog will appear, install and wait until it successfully finished.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26502303/edb8a68c-426e-11e7-80ae-1f67642b5c67.PNG" /></p>
+
+<p>3.3 Open your Visual Studio 2017 v.15.3 and locate the “Extensions and Updates” in Tools menu.</p>
+
+<p>3.4 Go to “Updates” -&gt; Xamarin Preview(2) and click “Update”</p>
+
+<p>3.5 Once you have finished, you can notice in “Installed” -&gt; “All” the Xamarin for Visual Studio [Experimental]</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26502643/1d0ab64a-4270-11e7-8b0d-abcd1961be26.PNG" /></p>
+
+<h3 id="40-checking-the-live-player-features">4.0 Checking The Live Player Features</h3>
+
+<p>Now you already setup your visual studio 2017 15.3 environment for Xamarin Live Player, you can now ready to use it.</p>
+
+<p>4.1 Open Visual Studio 2017 v.15.3</p>
+
+<p>4.2 Create or open the app and check if “Live Player” appear.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/26503101/feb24b84-4271-11e7-8ad6-2a2c43b2fe13.PNG" /></p>
+
+<p>When you see it, it means you successfully added the Xamarin Live Player features.</p>
+
+<h2 id="helpful-links">Helpful links</h2>
+<p>For Xamarin Live Player FAQ, go to this <a href="https://blog.xamarin.com/xamarin-live-player-faq/">link</a></p>
+
+<p>For troubleshooting procedures, go to this <a href="https://developer.xamarin.com/guides/cross-platform/live/troubleshooting/">link</a></p>
+
+<p><a href="https://deanilvincent.github.io//2017/05/26/how-to-use-xamarin-live-player-in-visual-studio-for-windows/">Basic Steps On to Use Xamarin Live Player</a></p>
+
+<p>Thank you for reading my this post. Feel free to comment below :)</p>
+:ET

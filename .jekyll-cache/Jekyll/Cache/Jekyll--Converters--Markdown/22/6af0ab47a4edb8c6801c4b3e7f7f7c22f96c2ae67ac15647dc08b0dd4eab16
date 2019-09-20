@@ -1,0 +1,88 @@
+I"�<p>In one of my projects, my boss asked me a favor to create an automatic sending of reports to his email. Since majority of my web projects are made using ASP.NET Core, fortunately, there is a package available out there that offers background process or workers without the windows service or separate process running. This cool package is <a href="https://www.hangfire.io/">Hangfire.</a> Don’t worry folks, it’s “Open and free for commercial use” (Although it offers plans like Startup, Bussiness &amp; Enterprise. read more <a href="https://www.hangfire.io/pricing/">here</a>).</p>
+
+<h4 id="some-of-its-cool-features-are">Some of its cool features are:</h4>
+
+<ul>
+  <li>Simple</li>
+  <li>Reliable</li>
+  <li>Efficient</li>
+  <li>Persistent</li>
+  <li>Distributed</li>
+  <li>Self-maintainable</li>
+  <li>Transparent</li>
+  <li>Extensible</li>
+  <li>and lastly, Open source</li>
+</ul>
+
+<p>Source: <a href="https://www.hangfire.io/">hangfire.io</a></p>
+
+<p>So let’s implement this cool package in our ASP.NET Core Web App.</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>Make sure you have a ASP.NET Core project solution (MVC or API) where we can install this package. You can use your existing project if you want but I recommend you create a new fresh sample project for this demo. If you’re ready, let’s get started!</p>
+
+<h3 id="10-installing-the-package">1.0 Installing the Package</h3>
+
+<p>1.1 Open the Nuget Package Manager and search for the package <code class="highlighter-rouge">Hangfire</code> and click install. So here we have a version 1.7.5</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/61585630-faa1e680-ab92-11e9-80ef-11fd8f94adac.JPG" /></p>
+
+<p>Optionally, you can use the Nuget Package Manager console and type in <code class="highlighter-rouge">Install-Package HangFire -Version 1.7.5</code></p>
+
+<p>1.2 Copy the dist folder content and move it in a folder in Drive C:</p>
+
+<p>In my example, I created a folder with a name “myvueapp” in the path of C:\inetpub\wwwroot and copy and paste all of the files and folders from the dist folder.
+<img src="https://user-images.githubusercontent.com/10904957/61219506-f1ee8200-a746-11e9-9638-34941115123e.JPG" /></p>
+
+<h3 id="20-create-webconfig-file">2.0 Create web.config file</h3>
+
+<p>2.1 Create a web.config file inside the “myvueapp” and paste these codes:</p>
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+<system.webServer>
+<rewrite>
+<rules>
+<rule name="Handle History Mode and custom 404/500" stopProcessing="true">
+<match url="(.*)" />
+<conditions logicalGrouping="MatchAll">
+<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+</conditions>
+<action type="Rewrite" url="/" />
+</rule>
+</rules>
+</rewrite>
+<httpErrors>
+<remove statusCode="404" subStatusCode="-1" />
+<remove statusCode="500" subStatusCode="-1" />
+<error statusCode="404" path="/survey/notfound" responseMode="ExecuteURL" />
+<error statusCode="500" path="/survey/error" responseMode="ExecuteURL" />
+</httpErrors>
+<modules runAllManagedModulesForAllRequests="true" />
+</system.webServer>
+</configuration>
+
+<p>2.2 Save the file.</p>
+
+<h3 id="30-create-a-website-on-iis">3.0 Create a website on IIS</h3>
+
+<p>3.1 Open the IIS app and create a new website under the “Sites” option and name it whatever you prefer. In my example, I name it as “myvuewebsite”. Locate the path of “myvueapp” and specify the specific port that you want.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/61220167-552ce400-a748-11e9-8369-24a99894bbdd.JPG" /></p>
+
+<p>3.2 Click “Ok” when you are done.</p>
+
+<h3 id="40-running-the-app">4.0 Running the app</h3>
+
+<p>4.1 On the right option, you will find the “Browse …” with a port number. Click and it will open the default browser.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/61220385-c9678780-a748-11e9-9ec5-785b2ef493e1.JPG" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/61220527-12b7d700-a749-11e9-9318-69bac3d202c8.JPG" /></p>
+
+<p>Cool! Now you have Vue.JS app running on IIS.</p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET

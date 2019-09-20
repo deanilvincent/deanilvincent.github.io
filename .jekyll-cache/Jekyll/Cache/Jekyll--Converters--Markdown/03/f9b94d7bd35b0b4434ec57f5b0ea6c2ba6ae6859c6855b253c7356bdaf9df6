@@ -1,0 +1,202 @@
+I"�,<h3 id="what-is-aspnet-core">What is ASP.NET Core?</h3>
+
+<p>“ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.” - <a href="https://docs.microsoft.com/en-us/aspnet/core/">Intro to ASP.NET Core</a></p>
+
+<h3 id="just-to-give-you-an-idea">Just to give you an idea</h3>
+
+<p>On June 26, 2016, Microsoft introduced a new way in building small to enterprise powerful web app. This is “ASP.NET Core.” Hearing ASP.NET is not new for most developers. If you’ve been developing web app for so long, I’m sure you already heard about the ASP.NET. Just to give you a history tip, ASP.NET was first released in January 2002 with it’s .Net Framework version 1.0. For the past decade and half, ASP.NET evolved until it reached the version 4.6 and 5 that turned to dead version and renamed to ASP.NET Core 1.0.</p>
+
+<h3 id="why-should-i-choose-aspnet-core">Why should I choose ASP.NET Core?</h3>
+
+<p>As you can notice, ASP.NET doesn’t stop in involving and updating. It has been here for so long and the team in Microsoft who handles this is so busy bringing every developer a more wider scope and range.</p>
+
+<p>Here are some cool benefits you can get in using ASP.NET Core:</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34781872-f8de6d92-f661-11e7-99d3-94d5ad33cb83.png" /></p>
+
+<p><i><a href="https://docs.microsoft.com/en-us/aspnet/core/">Image Ref.</a><i></i></i></p>
+
+<p>I already introduced to you what is ASP.NET Core. If you’re ready, let’s get started!</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>It’s important that you have a good environment with installed:</p>
+
+<ol>
+  <li>Visual Studio Community (Free) or Visual Studio Code (FREE) for IDE. Download <a href="https://www.visualstudio.com/downloads/">here</a> (Choose your OS platform).</li>
+  <li>Installed .NET SDK. Download <a href="https://www.microsoft.com/net/learn/get-started/windows">here</a> (Choose your OS platform)</li>
+  <li>Git. (Optional) Download <a href="https://git-scm.com/downloads">here</a> (Choose your OS platform)</li>
+  <li>SQL Server 2017 Express Edition (FREE with 10 GB Database Storage) or any other server. Download SQL Server here <a href="https://www.microsoft.com/en-us/sql-server/sql-server-editions-express">here</a></li>
+</ol>
+
+<h3 id="overview-of-what-were-going-to-create">Overview of what we’re going to create:</h3>
+
+<p><strong>Target Output:</strong> “ASP.NET Core App connected to Database”</p>
+
+<p><strong>Aim:</strong> After you finish this simple steps, you are already know how to create your first ASP.NET Core Web App connected to a MS SQL Server database.</p>
+
+<p>If you’re ready, let’s get started!</p>
+
+<h2 id="setting-up-the-environment">Setting Up the Environment</h2>
+
+<h3 id="10-create-your-aspnet-core-mvc-project">1.0 Create Your ASP.NET Core MVC Project</h3>
+<p>1.1 Open your Visual Studio then choose “File -&gt; New -&gt; Project” or “Ctrl+Shift+N”</p>
+
+<p>1.2 Choose “Installed -&gt; Visual C# -&gt; Web” then look for “ASP.NET Core Web Application” and name your application.</p>
+
+<p>1.3 When the white dialog box appears, choose “Web Application (Model-View-Controller) and click “Okay”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34873753-4f953088-f7d1-11e7-9a3d-decf0786baf7.PNG" /></p>
+
+<p>In the image, 1.) Make sure it’s .NET Core and 2.) Make sure you use the stable version of ASP.NET Core.</p>
+
+<p>You can run the created project by clicking “IIS Express” or by simply clicking “F5”</p>
+
+<h3 id="20-edit-the-project-csproj">2.0 Edit the Project .csproj</h3>
+
+<p>2.1 Right click your project and choose “Edit ‘YourProjectName’.csproj</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34874006-4678e89a-f7d2-11e7-8c21-21bbea6cce37.png" /></p>
+
+<p>2.2 Below the &lt;DotNetCliToolReference … /&gt; Add this code snippet,</p>
+
+<p><code class="highlighter-rouge">&lt;DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" /&gt;</code></p>
+
+<p>Similar to this image</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34874184-ef9fbbec-f7d2-11e7-9122-300211a5e70e.PNG" /></p>
+
+<p>We include this DotNeCliToolReference because we’ll rely on git bash, or powershell or cmd in our code first entity commands. This is also a best practice as far as I know.</p>
+
+<p>2.3 Save the file.</p>
+
+<h3 id="30-create-your-model-class">3.0 Create Your Model Class</h3>
+
+<p>3.1 Right click the “Model” folder, choose “Add -&gt; Class…” then name it, in our example, it’s “Students” and click “Add”</p>
+
+<p>Our Model class “Students” represents our table in mind where it has different properties like string, int etc.. Don’t get confused, model is just a class.</p>
+
+<p>3.2 Add these following properties inside the Students class:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public int Id { get; set; } // this represents our primary key in the table that we're going to migrate.
+public string Firstname { get; set; }
+public string Lastname { get; set; }
+public string Section { get; set; }
+</code></pre></div></div>
+
+<p>3.3 Save the File.</p>
+
+<h3 id="40-create-controller-and-generate-views-using-scaffolding">4.0 Create Controller and Generate Views using Scaffolding</h3>
+
+<p>4.1 Right click the “Controllers” folder, choose “Add -&gt; Controller…” then choose “MVC Controller with views, using <a href="https://docs.microsoft.com/en-us/aspnet/entity-framework">Entity Framework</a>” and click “Add”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34874819-87c1aa82-f7d5-11e7-8c50-9eb2e546b59c.PNG" /></p>
+
+<p>Similar to the image above.</p>
+
+<p>4.2 When the white dialog appears, choose the class name you’ve created which is “Students”</p>
+
+<p>4.3 Since we haven’t created yet the our Data context class, simply click the “+” and then click “Add” (You can name your Db Context class like the image below)</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34874919-ff948a02-f7d5-11e7-9b6a-e5139961c887.PNG" /></p>
+
+<p>4.4 When you’re done, click the “Add”</p>
+
+<p>Folders and files were generated in just a seconds.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34875458-48c3b3fe-f7d8-11e7-9585-9f7b2b51719b.PNG" /></p>
+
+<p>This is the power of Scaffolding. It generates different files and folders that are connected with each other.</p>
+
+<p>You can re-view each file and folder that are created.</p>
+
+<h3 id="50-establish-database-connection-inside-the-db-context-class-file">5.0 Establish Database Connection inside the Db Context Class file.</h3>
+
+<p>5.1 Open your DbContext file, and put this code snippet</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    optionsBuilder.UseSqlServer(@"Server=YOUR_HOST;Database=YOUR_DATABASE;User id=YOUR_USERID;Password=YOUR_PASSWORD;Integrated Security=false;MultipleActiveResultSets=true");
+}
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34875740-7c4411fa-f7d9-11e7-91d7-00fcdd5d2ec0.PNG" /></p>
+
+<p>Similar to this image above.</p>
+
+<h3 id="60-update-startupcs">6.0 Update Startup.cs</h3>
+
+<p>6.1 Look for Startup.cs in your project and open it.</p>
+
+<p>6.2 Look for this codes,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;(options=&gt;options.UseSqlServer(Configuration.GetConnectionString("MyDbContext)));
+</code></pre></div></div>
+
+<p>and replace it with this,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;();
+</code></pre></div></div>
+
+<p>Since our connection string was created in our db context.</p>
+
+<h3 id="70-locate-your-project-using-command-line">7.0 Locate your Project using Command Line</h3>
+
+<p>7.1 Open your installed git bash by searching in our windows “Git Bash” (You can use Windows PowerShell)</p>
+
+<p>7.2 Locate your project with this following commands until you reach the main project files.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"cd" for change directory
+"ls" for viewing as lists
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34876254-b1037c80-f7db-11e7-8f93-27029e595bb0.PNG" /></p>
+
+<h3 id="80-prepare-your-model-class-for-migration">8.0 Prepare Your Model Class for Migration</h3>
+
+<p>8.1 Enter this code snippet (below) and hit enter.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef migrations add initialcreate
+</code></pre></div></div>
+
+<p>This will create a snapshot file ready for migration. You can use different filename in the “initialcreate” just avoid spaces and other illegal characters.</p>
+
+<p>After you hit enter, you’ll notice it created a folder with a name of “Migrations” and files with with a name of …_initialcreate.cs and also MyDbContextModelSnapShot.cs</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34876484-b52527ea-f7dc-11e7-8e64-6a3ea994595d.PNG" /></p>
+
+<p>If you open the …_initialcreate.cs file, you’ll notice this codes.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34876540-ffe481cc-f7dc-11e7-913b-b8aac2522e42.PNG" /></p>
+
+<p>Basically, what it saying, “Hey, I’m going to CreateTable with a name of “Students” this table has a columns of Id which is nullable isn’t allowed (false) and IdentityColumn(Primary Key and Auto Increment). I’m going to create other columns too, the Firstname, Lastname and Section that allows string values.</p>
+
+<h3 id="90-update-your-database">9.0 Update Your Database</h3>
+
+<p>9.1 Go back to your command line then enter this code snippet (below) and hit enter.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef database update 
+</code></pre></div></div>
+
+<p>This will update your database. Since you haven’t created yetyour database in Sql Server, it will automatically create together with your table and columns.</p>
+
+<p>After you received a “Done.” message, everything works fine.</p>
+
+<h3 id="100-checking-your-sql-server">10.0 Checking your Sql Server</h3>
+
+<p>10.1 Open your Sql Server and check your automatically migrated database.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34876904-a9dcb180-f7de-11e7-9e52-797d7ca8cc57.PNG" /></p>
+
+<h3 id="110-running-your-app">11.0 Running your App</h3>
+
+<p>11.1 Simply run your app and navigate to “locahost:yourportassignedhere/Students/” and Create, Edit or even Delete information.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34877039-42a54882-f7df-11e7-9d0e-ec3746a63acc.PNG" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/34877040-42d7b452-f7df-11e7-8395-7a42a273f418.PNG" /></p>
+
+<p>Voila! you’re done creating your ASP.NET Core Web App connected to a Database.</p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET

@@ -1,0 +1,150 @@
+I""<p>If you haven’t tried using ASP.NET Core, I have another blog here entitled: <a href="https://deanilvincent.github.io/2018/01/12/steps-in-creating-simple-but-dynamic-powerful-web-app-using-asp-net-core-mvc-connected-to-a-database/">Steps in Creating Simple But Dynamic Powerful Web App using ASP.NET Core MVC connected to a Database</a>. Feel free to read that blog post.</p>
+
+<p>Normally, in order to publish and host your ASP.NET application on Windows Operation System(OS), you would need to host it on IIS (Internet Information Services). This is the common way to access your published web application.</p>
+
+<p>But the good thing about ASP.NET Core is, you can directly host it on Windows Services without using IIS.</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>It’s important that you have a good environment with installed:</p>
+
+<ol>
+  <li>Visual Studio Community (Free) or Visual Studio Code (FREE) for IDE. Download <a href="https://www.visualstudio.com/downloads/">here</a> (Choose your OS platform).</li>
+  <li>Installed .NET SDK. Download <a href="https://www.microsoft.com/net/learn/get-started/windows">here</a> (Choose your OS platform)</li>
+  <li>Installed .NET Core 2.0 or 2.1 SDK. Download <a href="https://www.microsoft.com/net/download/windows">here</a> (Choose your OS platform)</li>
+</ol>
+
+<h3 id="overview-of-what-were-going-to-create">Overview of what we’re going to create:</h3>
+
+<p><strong>Target Output:</strong> “Publish &amp; Host ASP.NET Core App on Windows Services Manager”</p>
+
+<p><strong>Aim:</strong> After you finish these simple steps, you will be able to alternatively use Windows Services to host your ASP.NET Core app.</p>
+
+<p>If you’re ready, let’s get started!</p>
+
+<h2 id="setting-up-the-environment">Setting Up the Environment</h2>
+
+<h3 id="10-create-your-aspnet-core-project">1.0 Create Your ASP.NET Core Project</h3>
+<p>1.1 Open your Visual Studio then choose “File -&gt; New -&gt; Project” or “Ctrl+Shift+N”</p>
+
+<p>1.2 Choose “Installed -&gt; Visual C# -&gt; Web” then look for “ASP.NET Core Web Application” and name your application.</p>
+
+<p>1.3 When the white dialog box appears, choose the target ASP.NET Core version. For this demo, I’m using ASP.NET Core 2.1 &amp; Web Application (Model-View-Controller) (but it doesn’t matter what kind of app template you want to choose). click “OK”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809015-13be415e-7719-11e8-875c-7085c953a9e0.PNG" /></p>
+
+<h3 id="20-edit-the-project-csproj-to-target-self-contained-app-runtime-identifier-for-windows">2.0 Edit the Project .csproj to target Self-Contained App Runtime Identifier for Windows</h3>
+
+<p>2.1 Right click your project and choose “Edit ‘YourProjectName’.csproj</p>
+
+<p>2.2 Inside the file, Add this code snippet below the <code class="highlighter-rouge">&lt;TargetFramework&gt;...&lt;/TargetFramework&gt;</code>,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64&lt;/RuntimeIdentifier&gt;
+  // If you're targeting to windows 7 or any other windows version, change it to win7 or win8
+</code></pre></div></div>
+
+<p>Similar to this image</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809125-98502d00-771a-11e8-84b7-0b5cc30025c1.PNG" /></p>
+
+<p>2.3 Save the file.</p>
+
+<p>Additional Info: This means, that we’re targeting to generate a publish output for windows only or what we called self-contained app. If you want to target multiple runtime identifiers you can do the example code snippet below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64;ubuntu.16.10-x64&lt;/RuntimeIdentifier&gt;
+  // We are targeting both windows and ubuntu.
+</code></pre></div></div>
+
+<h3 id="30-install-nuget-package">3.0 Install Nuget Package</h3>
+
+<p>3.1 Open nuget package manager and search for <code class="highlighter-rouge">Microsoft.AspNetCore.Hosting.WindowsServices</code></p>
+
+<p>3.1 Choose what version of package <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/">(package link)</a>, then click “Install”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809718-d939fb48-7724-11e8-9234-239905905248.PNG" /></p>
+
+<h3 id="40-modify-programcs">4.0 Modify Program.cs</h3>
+
+<p>4.1 Open the Program.cs of the project and modify the <code class="highlighter-rouge">public static void Main(string[] args){...}</code> method then paste the following codes below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.WindowsServices;
+using System.Diagnostics;
+... // add these namespaces above
+
+public static void Main(string[] args){
+    var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+    var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+
+    var host = WebHost.CreateDefaultBuilder(args)
+        .UseContentRoot(pathToContentRoot)
+        .UseStartup&lt;Startup&gt;()
+        .UseUrls("http://*:4312") // we're targeting port 4312 but you can choose different available port that you want
+        .Build();
+
+    host.RunAsService();
+}
+</code></pre></div></div>
+
+<p>4.2 Save the file.</p>
+
+<h3 id="50-publishing-the-project">5.0 Publishing the project</h3>
+
+<p>5.1 Open the command line or powershell and located your project path.
+Similar to the image below:
+<img src="https://user-images.githubusercontent.com/10904957/41809723-ebdc796a-7724-11e8-9ee0-1e35013e13c1.PNG" /></p>
+
+<p>5.2 Enter this code snippet to publish your app targeting windows runtime.</p>
+
+<p><code class="highlighter-rouge">dotnet publish --configuration Release -r win10-x64 --output C:\MyAppServicePath</code> and click enter.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809719-d96918ba-7724-11e8-9ff2-3ea6c4d9b983.PNG" /></p>
+
+<p>Look for the path <code class="highlighter-rouge">C:\MyAppServicePath</code> and double check if it successfully generated a self-contained app. You’ll see the <code class="highlighter-rouge">.exe</code> &amp; <code class="highlighter-rouge">.dll</code> of your publish output. This means, you are now ready to run that <code class="highlighter-rouge">.exe</code> in Windows Services Manager.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809769-b6863354-7725-11e8-8b04-b4aa6b9b83bb.PNG" /></p>
+
+<h3 id="60-create-service-of-your-application">6.0 Create Service of your Application</h3>
+
+<p>6.1 Open a command line or powershell and “Run as Administrator.”</p>
+
+<p>6.2 Enter this command</p>
+
+<p><code class="highlighter-rouge">sc CREATE NameOfYourService binPath="String_Path_of_the_exe_app"</code></p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809820-84b297ae-7726-11e8-8afe-c2b9728272cf.PNG" /></p>
+
+<h3 id="70-check-your-created-service-on-windows-services-manager">7.0 Check your Created Service on Windows Services Manager</h3>
+
+<p>7.1 Open Windows Services Manager and look for the service name you’ve created.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809863-4d6ea28c-7727-11e8-95bf-bad07293e549.PNG" /></p>
+
+<p>By default, the service is not yet started.</p>
+
+<h3 id="80-start-the-service">8.0 Start the service</h3>
+
+<p>8.1 To the service, just simply enter this command:</p>
+
+<p><code class="highlighter-rouge">sc START NameOfYourService</code></p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809894-af498a1c-7727-11e8-9b22-6d1f89a14a76.PNG" /></p>
+
+<p>Other available service commands are:</p>
+
+<p><code class="highlighter-rouge">sc query NameOfYourService</code> - to view the status of the service.
+<code class="highlighter-rouge">sc stop NameOfYourService</code> - to stop the service.
+<code class="highlighter-rouge">sc delete NameOfYourService</code> - to delete the service.</p>
+
+<h3 id="90-running-your-app">9.0 Running your App</h3>
+
+<p>9.1 To run the application, simply enter the port you’ve entered in your <code class="highlighter-rouge">Program.cs</code> for this project, we’re using <code class="highlighter-rouge">localhost:4312</code>.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/41809954-8e53a6a2-7728-11e8-8118-93a1130083c4.PNG" /></p>
+
+<p>Voila! we host our published ASP.NET Core App without using IIS but alternatively, we’re using Windows Services.</p>
+
+<p>Blog reference: <a href="https://minilink.net/0Hr3rqo">https://minilink.net/0Hr3rqo</a></p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET

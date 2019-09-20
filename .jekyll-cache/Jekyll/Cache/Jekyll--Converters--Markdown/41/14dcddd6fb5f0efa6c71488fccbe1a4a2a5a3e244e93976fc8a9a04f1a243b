@@ -1,0 +1,185 @@
+I"b'<p>This basic steps will teach you how to create and implement basic Asp.net Web Service API.</p>
+
+<p>What is Web APIs(Application Programming Interface) means?</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23101928/23bc84c8-f6da-11e6-9a36-25509c0146b4.PNG" /></p>
+
+<p>Read more <a href="https://en.wikipedia.org/wiki/Application_programming_interface">here</a></p>
+
+<p>Since our focus is the .Net Framework, we will use ASP.NET Web API implementation.</p>
+
+<p>What is ASP.NET Web API?</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23101965/0b4f4348-f6db-11e6-9b9c-96f85d34d20a.PNG" /></p>
+
+<p>To get started on ASP.NET web api, read more here: https://www.asp.net/web-api</p>
+
+<p>Note: This steps are based on the way how I create ASP.NET Web API using Visual Studio. You can use whatever steps that you want but make sure it will end up the same outputs.</p>
+
+<h3 id="1-step-10---creating-the-project">1. Step 1.0 - Creating the project</h3>
+<p>1.1 Open the Visual Studio</p>
+
+<p>1.2 File -&gt; Project (Ctrl+Shift+N)</p>
+
+<p>1.3 When the dialog box open, choose Templates -&gt; Visual C# -&gt; Web. We name our project as “MyWebAPI”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102044/ae5d64b0-f6dc-11e6-9c0f-b97c07fac23a.PNG" /></p>
+
+<p>1.4 Another dialog box will appear and just choose Web API</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102065/25fe559c-f6dd-11e6-95b0-a19b62483297.PNG" /></p>
+
+<p>1.5 Welcome page will appear</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102104/cec6ed10-f6dd-11e6-9b94-6fb8f7529c29.PNG" /></p>
+
+<h3 id="step-20---updating-our-webconfig-for-db-connection">Step 2.0 - Updating our Web.config for DB connection</h3>
+
+<p>2.1 Open the Solution Explorer and locate the Web.config file</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102140/870d6732-f6de-11e6-9745-f8b99e6ed3be.PNG" /></p>
+
+<p>Like in basic ASP.NET web app, the connection snippet is the same with ASP.NET Web API.</p>
+
+<p>2.2 Put connection string</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="n">connectionStrings</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">add</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"MySampDBContext"</span> <span class="n">connectionString</span><span class="o">=</span><span class="s2">"Data source=YOUR_DB_CONNECTION;Initial Catalog=YOUR_DB_NAME; Integrated Security=True"</span> <span class="n">providerName</span><span class="o">=</span><span class="s2">"System.Data.SqlClient"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/connectionStrings&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h4 id="step-30---creating-your-class-model">Step 3.0 - Creating your class model</h4>
+
+<p>3.1 Right click the Model folder, choose Add and choose “Class…” In this example, we name our model class as “UserDetailCredentials”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102221/4e3b296a-f6e0-11e6-86e0-c72f5d4203ec.PNG" /></p>
+
+<p>3.2 Adding properties inside the class</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="kp">public</span> <span class="k">class</span> <span class="nc">UserDetailCredentials</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="n">int</span> <span class="no">Id</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Username</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Password</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Name</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>3.3 Rebuild the solution (Ctrl+Shift+B)</p>
+
+<h3 id="4-step-40---creating-your-mvc--api-controllers">4. Step 4.0 - Creating your MVC &amp; API Controllers</h3>
+
+<p>In this tutorial, since we want to track what are the details that will appear on our API, let us use the MVC Controller with views, using Entity Framework. Let this serve us our UI to make this easier.</p>
+
+<ul>
+  <li>Creating MVC Controller with views, using Entity Framework</li>
+</ul>
+
+<p>4.1 Right click the Controllers folder, choose Add and Choose “Controller…”</p>
+
+<p>4.2 Dialog controller will open, choose the MVC 5 Controller with views, using Entity Framework.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102404/6e19d292-f6e3-11e6-8afa-7dbdb8a48fcc.PNG" /></p>
+
+<p>4.3 Adding Controller. Choose your model, Check the “Use async controller actions” and the Data Context Class(“name” that we included in the connection string). Click Add</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102444/3c7da08c-f6e4-11e6-9a49-9eb59c603f1f.PNG" /></p>
+
+<p>Now we have our MVC controller and our UI pages, we can now create our API controller.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102468/acb36a76-f6e4-11e6-906f-78d9ba068f0c.PNG" /></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102469/acb8686e-f6e4-11e6-8e7c-164942265fde.PNG" /></p>
+
+<p>4.5 Rebuild the solution.</p>
+
+<ul>
+  <li>Creating API Controller</li>
+</ul>
+
+<p>4.6 Right click the Controllers’ folder, choose Add and Choose “Controller…”</p>
+
+<p>4.7 Dialog controller will open, choose the Web API 2 Controller with actions, using Entity Framework.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102524/c5047bd2-f6e5-11e6-8a99-c64bb6671a3d.PNG" /></p>
+
+<p>4.8 Adding Controller. Choose your model, Check the “Use async controller actions” and the Data Context Class(“name” that we included in the connection string) and we name our api controller as “UserDetailCredentialsAPIController”. Click Add</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102554/091da49c-f6e6-11e6-96d3-c3c67f461d49.PNG" /></p>
+
+<p>Now we have controller class with actions for our api.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102577/9c0ed0fa-f6e6-11e6-92a7-f67ad0c2250b.PNG" /></p>
+
+<p>Here’s the summary of the default api contorller that we created.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102640/e52e594e-f6e7-11e6-9e38-e0058ee7e562.PNG" /></p>
+
+<h3 id="50-enabling-migrations-and-updating-the-database">5.0 Enabling Migrations and updating the database</h3>
+
+<p>Now we already prepared everything, it’s time to enable migrations and update the database.</p>
+
+<p>5.1 Open Package Manager Console</p>
+
+<p>5.2 Type in “Enable-Migrations” (without quotes) and click Enter</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102707/3356440a-f6e9-11e6-99c7-675d0d5271f4.PNG" /></p>
+
+<p>5.3 Adding migration by typing in “Add-Migration (YourMigrationName)” (without quotes) and press Enter</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102730/aead53d2-f6e9-11e6-8abb-d44ff364f37d.PNG" /></p>
+
+<p>The preview of your migration will appear. When you are done inspecting, you can now proceed to update the database.</p>
+
+<p>5.4 Updating the database by simply typing “update-database” and press the Enter</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102761/30e2fa8c-f6ea-11e6-8590-69a9159da83b.PNG" /></p>
+
+<h3 id="60-running-the-whole-project">6.0 Running the whole project</h3>
+
+<p>6.1 Build and Start running the project.</p>
+
+<p>Add sample details</p>
+
+<p>6.2 Create a new set of details</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102817/02e98b9a-f6eb-11e6-9475-42fc4afaa723.PNG" /></p>
+
+<ul>
+  <li>Accessing the api page</li>
+</ul>
+
+<p>Now we have set of details, let’s us now view our custom API page.</p>
+
+<p>In order to access the api, by default, you need to set the uri to api followed by your api controller name</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">yourhost</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">yourapicontrollername</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>6.3 Go the api link</p>
+
+<p>JSON Format using Microsoft Edge</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102872/372b7cc8-f6ec-11e6-98a3-84afd02351ee.PNG" /></p>
+
+<p>XML Format using Google Chrome</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23102886/6774d992-f6ec-11e6-95d9-165034e05736.PNG" /></p>
+
+<p><a href="https://github.com/deanilvincent/Steps-In-Creating-Basic-ASP.NET-WebAPI">Here’s the Github Link For This Post</a></p>
+
+<p>Give me a ★ :D</p>
+
+<p>Thank you for reading. I hope you’ve learned from me. Feel to comment below!</p>
+:ET

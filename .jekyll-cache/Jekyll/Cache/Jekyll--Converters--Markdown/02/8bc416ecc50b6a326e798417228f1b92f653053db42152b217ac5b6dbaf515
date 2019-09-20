@@ -1,0 +1,389 @@
+I"�k<p>This project is one of the simplest ways how to implement login system using Web Service Rest API.</p>
+
+<h3 id="ios-preview">iOS Preview</h3>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23106000/0b00f0ac-f722-11e6-8510-0107e68a6b0a.png" /></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23106001/0b2932ec-f722-11e6-85fe-46b04c75ce6b.png" /></p>
+
+<p>// Android Preview soon…</p>
+
+<p>// UWP Preview soon…</p>
+
+<p>Before we begin, we need to prepare our Web Service.</p>
+
+<p>I created an optional prerequisite in creating your basic web service api using ASP.NET Web API.</p>
+
+<p>Here’s the link: <a href="https://deanilvincent.github.io//2017/05/16/steps-in-creating-basic-aspnet-web-service-api/"> Steps in Creating Basic Asp.Net Web Service API</a></p>
+
+<p>In this sample web service project, I included these following model class properties:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="kp">public</span> <span class="k">class</span> <span class="nc">UserDetailCredentials</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="n">int</span> <span class="no">Id</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Username</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Password</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">Name</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>When you are done creating your web service, you can now proceed in creating our Xamarin Cross Platform Mobile App project.</p>
+
+<h2 id="basic-steps-in-implementing-login-system-using-xamarin-forms">Basic Steps in Implementing Login System using Xamarin Forms.</h2>
+
+<h3 id="10-creating-the-project">1.0 Creating the project</h3>
+
+<p>1.1 Go to File -&gt; New -&gt; Project (Ctrl+Shift+N)</p>
+
+<p>1.2 Choose Templates -&gt; Visual C# -&gt; Cross Platform and rename the project. (Here I named my project as CrossPlatformBasicLoginSystem) and then Click the “OK”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104382/c77b7d80-f707-11e6-8e12-cd104b43dd02.PNG" /></p>
+
+<p>1.3 A white dialog box will appear and you need to choose the following: Template Blank App, Forms in UI Technology and PCL in Sharing. Then click “Accept” to finalize the project creation.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104393/0c987d00-f708-11e6-85a4-6b668a59bbfa.PNG" /></p>
+
+<p>Now you have successfully created your project. This includes the following projects summary:</p>
+
+<p>Main Project Portable (PCL)</p>
+
+<ol>
+  <li>Project.Droid (Android)</li>
+  <li>Project.iOS (iOS)</li>
+  <li>Project.UWP (UWP)</li>
+  <li>// other windows platform projects</li>
+</ol>
+
+<h3 id="20-installation-of-nuget-packages">2.0 Installation of nuget packages</h3>
+
+<p>2.1 Install the following nuget packages at the main project solution:</p>
+
+<ul>
+  <li><a href="https://www.nuget.org/packages/Microsoft.Net.Http/">Microsoft.Net.Http</a>
+    <ul>
+      <li><a href="http://go.microsoft.com/fwlink/?LinkID=280055">Project URL</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.nuget.org/packages/Microsoft.Bcl/">Microsoft.Bcl</a>
+    <ul>
+      <li><a href="http://go.microsoft.com/fwlink/?LinkID=280057">Project URL</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.nuget.org/packages/Microsoft.Bcl.Build/">Microsoft.Bcl.Build</a>
+    <ul>
+      <li><a href="http://go.microsoft.com/fwlink/?LinkID=296436">Project URL</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.nuget.org/packages/newtonsoft.json/">Json.NET</a>
+    <ul>
+      <li><a href="http://www.newtonsoft.com/json/help/html/Introduction.htm">Documetation</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>You can use either the Manage Packages for Solution or Manually Type in the packages in the Package Manager Console.</p>
+
+<p><strong>Note:</strong> The simplest way is to just install the Microsoft.Net.Http since Microsoft.BCL &amp; Microsoft.Bcl.Build are part of its dependencies.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104700/e8d106c0-f70d-11e6-95b3-cb33e834d34f.PNG" /></p>
+
+<p>2.2 Create the following folders in the Portable Project</p>
+
+<ul>
+  <li>Models</li>
+  <li>RestAPIClient</li>
+  <li>ServicesHandler</li>
+  <li>Views</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104875/ef96ccbc-f710-11e6-8ab5-f9f537716ab7.PNG" /></p>
+
+<h3 id="30-creating-the-model-class">3.0 Creating the Model Class</h3>
+
+<p>3.1 Right click the Models Folder -&gt; Add -&gt; Class… In this example, we name our class model as “UserDetailCredentials.cs” and click “Add”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104891/4885be28-f711-11e6-9764-ebeee99b7199.PNG" /></p>
+
+<p>3.2 Add the sample properties for our login details</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="kp">public</span> <span class="k">class</span> <span class="nc">UserDetailCredentials</span>
+<span class="p">{</span>
+   <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"id"</span><span class="p">)]</span>
+   <span class="kp">public</span> <span class="n">int</span> <span class="no">Id</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+   <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"username"</span><span class="p">)]</span>
+   <span class="kp">public</span> <span class="n">string</span> <span class="no">Username</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+   <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"password"</span><span class="p">)]</span>
+   <span class="kp">public</span> <span class="n">string</span> <span class="no">Password</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+   <span class="p">[</span><span class="no">JsonProperty</span><span class="p">(</span><span class="s2">"name"</span><span class="p">)]</span>
+   <span class="kp">public</span> <span class="n">string</span> <span class="no">Name</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>3.3 Build the solution (Ctrl+Shift+B)</p>
+
+<h3 id="40-adding-our-code-snippet-in-our-web-service-api-controller">4.0 Adding our code snippet in our web service api controller</h3>
+
+<p>4.1 Go to your web service api controller and paste this following code snippet. In this code, we create a new HTTP Get Request with a custom route request of api/UserCredentials/username={username}/password={password}</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="p">[</span><span class="no">HttpGet</span><span class="p">]</span>
+<span class="p">[</span><span class="no">Route</span><span class="p">(</span><span class="s2">"api/UserCredentials/username={username}/password={password}"</span><span class="p">)]</span>
+<span class="kp">public</span> <span class="n">async</span> <span class="no">Task</span><span class="o">&lt;</span><span class="no">IHttpActionResult</span><span class="o">&gt;</span> <span class="no">UserDetailsLogin</span><span class="p">(</span><span class="n">string</span> <span class="n">username</span><span class="p">,</span> <span class="n">string</span> <span class="n">password</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="no">UserDetailCredentials</span> <span class="n">login</span> <span class="o">=</span>
+                <span class="n">await</span> <span class="n">db</span><span class="o">.</span><span class="no">UserDetailCredentials</span><span class="o">.</span><span class="no">Where</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="no">Username</span> <span class="o">==</span> <span class="n">username</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">.</span><span class="no">Password</span> <span class="o">==</span> <span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="no">SingleOrDefaultAsync</span><span class="p">();</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">login</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="k">return</span> <span class="no">NotFound</span><span class="p">();</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="no">Ok</span><span class="p">(</span><span class="n">login</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="50-creating-the-rest-client-class">5.0 Creating the Rest Client class</h3>
+
+<p>5.1 Right click the RestAPIClient Folder -&gt; Add -&gt; Class… In this example, we name our class model as “RestClient.cs” and click “Add”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23104958/71a5fb14-f712-11e6-8aff-b7d8ca7a822f.PNG" /></p>
+
+<p>5.2 Inside the RestClient class, include this namespace</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">Net</span><span class="o">.</span><span class="no">Http</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>5.3 And paste this code snippet that I created.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="kp">public</span> <span class="k">class</span> <span class="nc">RestClient</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span>
+<span class="p">{</span>
+   <span class="kp">private</span> <span class="n">const</span> <span class="n">string</span> <span class="no">MainWebServiceUrl</span> <span class="o">=</span> <span class="s2">"http://MainHost/"</span><span class="p">;</span> <span class="sr">//</span> <span class="no">Put</span> <span class="n">your</span> <span class="n">main</span> <span class="n">host</span> <span class="n">url</span> <span class="n">here</span>
+   <span class="kp">private</span> <span class="n">const</span> <span class="n">string</span> <span class="no">LoginWebServiceUrl</span> <span class="o">=</span> <span class="no">MainWebServiceUrl</span> <span class="o">+</span> <span class="s2">"api/UserCredentials/"</span><span class="p">;</span> <span class="sr">//</span> <span class="n">put</span> <span class="n">your</span> <span class="n">api</span> <span class="n">extension</span> <span class="n">url</span><span class="o">/</span><span class="n">uri</span> <span class="n">here</span>
+
+   <span class="sr">//</span> <span class="no">This</span> <span class="n">code</span> <span class="n">matches</span> <span class="n">the</span> <span class="no">HTTP</span> <span class="no">Request</span> <span class="n">that</span> <span class="n">we</span> <span class="n">included</span> <span class="k">in</span> <span class="n">our</span> <span class="n">api</span> <span class="n">controller</span>
+   <span class="kp">public</span> <span class="n">async</span> <span class="no">Task</span><span class="o">&lt;</span><span class="n">bool</span><span class="o">&gt;</span> <span class="n">checkLogin</span><span class="p">(</span><span class="n">string</span> <span class="n">username</span><span class="p">,</span> <span class="n">string</span> <span class="n">password</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="n">var</span> <span class="n">httpClient</span> <span class="o">=</span> <span class="n">new</span> <span class="no">HttpClient</span><span class="p">();</span>
+      <span class="sr">//</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="no">MainHost</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="no">UserCredentials</span><span class="o">/</span><span class="n">username</span><span class="o">=</span><span class="n">foo</span><span class="o">/</span><span class="n">password</span><span class="o">=</span><span class="n">foo</span><span class="o">.</span> <span class="no">The</span> <span class="n">api</span> <span class="n">value</span> <span class="n">and</span> <span class="n">response</span> <span class="n">value</span> <span class="n">should</span> <span class="n">match</span> <span class="k">in</span> <span class="n">order</span> <span class="n">to</span> <span class="k">return</span> <span class="n">a</span> <span class="kp">true</span> <span class="n">status</span> <span class="n">code</span><span class="p">.</span> 
+      <span class="nf">var</span> <span class="n">response</span> <span class="o">=</span> <span class="n">await</span> <span class="n">httpClient</span><span class="o">.</span><span class="no">GetAsync</span><span class="p">(</span><span class="no">LoginWebServiceUrl</span> <span class="o">+</span> <span class="s2">"username="</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="s2">"password="</span> <span class="o">+</span> <span class="n">password</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="no">IsSuccessStatusCode</span><span class="p">;</span> <span class="sr">//</span> <span class="k">return</span> <span class="n">either</span> <span class="kp">true</span> <span class="n">or</span> <span class="kp">false</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="60-creating-the-portable-service-class">6.0 Creating the Portable service class</h3>
+
+<p>6.1 Right click the ServicesHandler Folder -&gt; Add -&gt; Class… In this example, we name our class model as “LoginService.cs” and click “Add”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23105221/3db31176-f716-11e6-999c-0733d2681059.PNG" /></p>
+
+<p>6.2 Inside the LoginService class, paste this following code snippet.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="sr">//</span> <span class="n">fetch</span> <span class="n">the</span> <span class="no">RestClient</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span>
+<span class="no">RestClient</span><span class="o">&lt;</span><span class="no">UserDetailCredentials</span><span class="o">&gt;</span> <span class="n">_restClient</span> <span class="o">=</span> <span class="n">new</span> <span class="no">RestClient</span><span class="o">&lt;</span><span class="no">UserDetailCredentials</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="sr">//</span> <span class="no">Boolean</span> <span class="n">function</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">username</span> <span class="o">&amp;</span> <span class="n">password</span><span class="p">.</span>
+<span class="nf">public</span> <span class="n">async</span> <span class="no">Task</span><span class="o">&lt;</span><span class="n">bool</span><span class="o">&gt;</span> <span class="no">CheckLoginIfExists</span><span class="p">(</span><span class="n">string</span> <span class="n">username</span><span class="p">,</span> <span class="n">string</span> <span class="n">password</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">var</span> <span class="n">check</span> <span class="o">=</span> <span class="n">await</span> <span class="n">_restClient</span><span class="p">.</span><span class="nf">checkLogin</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+
+   <span class="k">return</span> <span class="n">check</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="70-creating-our-xaml-view-page">7.0 Creating our Xaml View Page</h3>
+
+<p>7.1 Right click the Views Folder -&gt; Add -&gt; New Item… -&gt; Visual C# -&gt; Cross-Platform and choose Forms Xaml Page. In this example, we name our xaml page as “LoginPage.xaml” and click “Add”</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23105221/3db31176-f716-11e6-999c-0733d2681059.PNG" /></p>
+
+<p>7.2 Modify the xaml page. Here I created a basic sample design of the login.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">StackLayout</span> <span class="no">Padding</span><span class="o">=</span><span class="s2">"30"</span>
+             <span class="no">VerticalOptions</span><span class="o">=</span><span class="s2">"Start"</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Username"</span>
+          <span class="no">HorizontalOptions</span><span class="o">=</span><span class="s2">"Center"</span><span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">""</span>
+          <span class="n">x</span><span class="ss">:Name</span><span class="o">=</span><span class="s2">"EntryUsername"</span><span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Password"</span>
+          <span class="no">HorizontalOptions</span><span class="o">=</span><span class="s2">"Center"</span><span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">""</span>
+          <span class="n">x</span><span class="ss">:Name</span><span class="o">=</span><span class="s2">"EntryPassword"</span>
+          <span class="no">IsPassword</span><span class="o">=</span><span class="s2">"True"</span><span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Login"</span>
+           <span class="no">TextColor</span><span class="o">=</span><span class="s2">"White"</span>
+           <span class="no">BackgroundColor</span><span class="o">=</span><span class="s2">"#22A7F0"</span>
+           <span class="n">x</span><span class="ss">:Name</span><span class="o">=</span><span class="s2">"ButtonLogin"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/StackLayout&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><img src="https://cloud.githubusercontent.com/assets/10904957/23105568/3ef023b6-f71c-11e6-8927-7a4f35c9a814.PNG" /></p>
+
+<p>7.3 Adding clicked xaml clicked even handler (Clicked=”ButtonLogin_Clicked”) in the button login with a name identifier of x:Name=”ButtonLogin”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Login"</span>
+        <span class="no">TextColor</span><span class="o">=</span><span class="s2">"White"</span>
+        <span class="no">BackgroundColor</span><span class="o">=</span><span class="s2">"#22A7F0"</span>
+        <span class="n">x</span><span class="ss">:Name</span><span class="o">=</span><span class="s2">"ButtonLogin"</span>
+        <span class="no">Clicked</span><span class="o">=</span><span class="s2">"ButtonLogin_Clicked"</span><span class="o">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Once the Xaml event has been created, automatically our .cs event handler will be created too.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="kp">private</span> <span class="n">void</span> <span class="no">ButtonLogin_Clicked</span><span class="p">(</span><span class="n">object</span> <span class="n">sender</span><span class="p">,</span> <span class="no">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="sr">//</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="80-calling-the-rest-client-to-validate-the-login">8.0 Calling the rest client to validate the login</h3>
+
+<p>8.1 Change the event handler to async by adding “async” before the void and “await” inside the event handler.</p>
+
+<p>What does “async” and “await” do, is that it will optimize the waiting thread of the request.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="kp">private</span> <span class="n">async</span> <span class="n">void</span> <span class="no">ButtonLogin_Clicked</span><span class="p">(</span><span class="n">object</span> <span class="n">sender</span><span class="p">,</span> <span class="no">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="sr">//</span> <span class="n">await</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>8.2 Reference the login service to the login page class.</p>
+
+<p>8.3 Add the code snippet inside the login event</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="kp">private</span> <span class="n">async</span> <span class="n">void</span> <span class="no">ButtonLogin_Clicked</span><span class="p">(</span><span class="n">object</span> <span class="n">sender</span><span class="p">,</span> <span class="no">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="no">LoginService</span> <span class="n">services</span> <span class="o">=</span> <span class="n">new</span> <span class="no">LoginService</span><span class="p">();</span>
+   <span class="n">var</span> <span class="n">getLoginDetails</span> <span class="o">=</span> <span class="n">await</span> <span class="n">services</span><span class="o">.</span><span class="no">CheckLoginIfExists</span><span class="p">(</span><span class="no">EntryUsername</span><span class="o">.</span><span class="no">Text</span><span class="p">,</span> <span class="no">EntryPassword</span><span class="o">.</span><span class="no">Text</span><span class="p">);</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="n">getLoginDetails</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="n">await</span> <span class="no">DisplayAlert</span><span class="p">(</span><span class="s2">"Login success"</span><span class="p">,</span> <span class="s2">"You are login"</span><span class="p">,</span> <span class="s2">"Okay"</span><span class="p">,</span> <span class="s2">"Cancel"</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+      <span class="n">await</span> <span class="no">DisplayAlert</span><span class="p">(</span><span class="s2">"Login failed"</span><span class="p">,</span> <span class="s2">"Username or Password is incorrect or not exists"</span><span class="p">,</span> <span class="s2">"Okay"</span><span class="p">,</span> <span class="s2">"Cancel"</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="90-running-the-app">9.0 Running the app</h3>
+
+<p>9.1 Lastly, change your App.cs and target the MainPage as equal to our login page</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="kp">public</span> <span class="no">App</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="no">MainPage</span> <span class="o">=</span> <span class="n">new</span> <span class="no">LoginPage</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>9.2 Run the app</p>
+
+<p><a href="https://github.com/deanilvincent/Xamarin-Forms-Simple-Login-With-Rest-API">Here’s the Github Link For This Post</a></p>
+
+<p>Give me a ★ :D</p>
+
+<p>Thank you for reading. I hope you’ve learned from me. Feel to comment below!</p>
+:ET

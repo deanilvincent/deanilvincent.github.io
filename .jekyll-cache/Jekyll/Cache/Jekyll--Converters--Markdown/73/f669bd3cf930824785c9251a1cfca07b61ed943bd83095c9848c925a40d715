@@ -1,0 +1,394 @@
+I"\<iframe src="https://player.vimeo.com/video/221072097" width="100%" height="359" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>In this blog tutorial, I’ll be guiding you with very easy steps how to create a simple Xamarin.Forms crud app with Realm Database for local storage and integrated with MVVM architectural design pattern.</p>
+
+<p>If you have no idea about MVVM (Model-View-View-Model) and DataBinding in Xamarin.Forms yet, you can read this post created by <a href="https://deanilvincent.github.io/">Me</a> of course :)</p>
+
+<p><a href="https://deanilvincent.github.io//2017/06/03/basic-understanding-of-mvvm-and-databinding-in-xamarin-forms/">Basic Understanding How Data Binding and MVVM works in Xamarin Forms</a></p>
+
+<p>If you are ready, Let us get started.</p>
+
+<h2 id="what-is-realm-mobile-database">What is Realm Mobile Database?</h2>
+
+<p>Basically, <a href="https://realm.io/products/realm-mobile-database/">Realm Mobile Database</a> is alternative for Sqlite. If you are familiar with Sqlite, it’s the local database for your phone. This database is for light purposes only like storing cache, storing simple to-do task, simple game storage etc. Same way with Realm Mobile Database.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26984406-dd282b68-4d71-11e7-9774-a07e3a1a045e.png" /></p>
+
+<p><i>For more: <a href="https://realm.io/docs/get-started/overview/">Realm Get Started Page</a></i></p>
+
+<p>What the cool thing about Realm Database is that, it’s so fast. They have some promising things about their Mission too:</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26983928-fad73fca-4d6f-11e7-9927-ddbe914126c5.png" /></p>
+
+<p><i><a href="https://realm.io/about/">https://realm.io/about/</a></i></p>
+
+<p>Realm Mobile Database supports,</p>
+
+<ul>
+  <li>Xamarin - Docs: <a href="https://realm.io/docs/xamarin/latest/">Realm Xamarin</a></li>
+  <li>Java - Docs: <a href="https://realm.io/docs/java/latest/">Realm Java</a></li>
+  <li>Objective-C - Docs: <a href="https://realm.io/docs/objc/latest/">Realm Objective-C</a></li>
+  <li>Javascript - Docs: <a href="https://realm.io/docs/javascript/latest/">Realm Javascript</a></li>
+  <li>Swift - Docs: <a href="https://realm.io/docs/swift/latest/">Realm Swift</a></li>
+</ul>
+
+<p>In this blog, we’ll focusing on Realm Xamarin.</p>
+
+<h2 id="creating-our-xamarinforms-crudcreate-read-update--delete-app-with-realm-mobile-database-and-mvvm">Creating Our Xamarin.Forms Crud(Create, Read, Update &amp; Delete) App with Realm Mobile Database and MVVM</h2>
+
+<h3 id="10-creating-the-cross-platform-app-inside-the-visual-studio">1.0 Creating the Cross Platform App inside the Visual Studio</h3>
+
+<p>1.1 Open your visual studio and create new “Cross Platform Application” (Ctrl + Shift + N)</p>
+
+<p>1.2 Choose “Installed” -&gt; “Templates” -&gt; “Visual C#” -&gt; “Cross Platform.” After naming your App, choose Xamarin.Forms and Portable Class Library (PCL) and click “Okay”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26985153-d8db6446-4d74-11e7-9c92-d7cc63b6916b.PNG" /></p>
+
+<h3 id="20-installing-realm-mobile-database">2.0 Installing Realm Mobile Database</h3>
+
+<p>2.1 Simply go to “Tools” (on the nav bar) -&gt; “NuGet Package Manager” -&gt; “Manage NuGet Packages for Solution…”</p>
+
+<p>2.1 Search for “Realm”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26987740-4e92e254-4d7f-11e7-9f00-3cfd919c0ead.PNG" /></p>
+
+<p>2.2. Check the “Project” to automatically check all the projects since we’re targeting to use Realm Mobile Database in each platform.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26987741-4e939f50-4d7f-11e7-95b7-d65ce884d552.PNG" /></p>
+
+<p>2.3 Click “Install” and wait until it finish.</p>
+
+<h3 id="30-creating-simple-mvvm-implementation-in-our-portable-project">3.0 Creating Simple MVVM Implementation in our Portable Project</h3>
+
+<p>3.1 Simply, Add these following folders</p>
+
+<ul>
+  <li>Models</li>
+  <li>ViewModels</li>
+  <li>Views</li>
+</ul>
+
+<p>(By Default, MainPage.xaml is out the Views folder, just drag it inside our “Views” folder)</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26988112-9f196de6-4d80-11e7-9138-30f9cf4935c9.PNG" /></p>
+
+<h3 id="40-creating-model-class-file">4.0 Creating Model Class File.</h3>
+
+<p>4.1 Right Click the Folder “Models” -&gt; “Add” -&gt; “New Item…” and choose “Visual C#” -&gt; “Class”</p>
+
+<p>4.5 Name your class file. In our example, we use “CustomerDetails.cs” and click “Okay”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="n">using</span> <span class="no">Realms</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">CrudWithRealmApp</span><span class="o">.</span><span class="no">Models</span>
+<span class="p">{</span>
+  <span class="sr">//</span>  <span class="no">RealmObject</span> <span class="n">means</span><span class="p">,</span> <span class="no">Implicit</span> <span class="n">reference</span> <span class="n">conversion</span> <span class="n">from</span> <span class="n">model</span> <span class="n">to</span> <span class="n">realmobject</span>
+  <span class="kp">public</span> <span class="k">class</span> <span class="nc">CustomerDetails</span> <span class="p">:</span> <span class="no">RealmObject</span> 
+  <span class="p">{</span>
+    <span class="p">[</span><span class="no">PrimaryKey</span><span class="p">]</span>
+    <span class="kp">public</span> <span class="n">int</span> <span class="no">CustomerId</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">string</span> <span class="no">CustomerName</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kp">public</span> <span class="n">int</span> <span class="no">CustomerAge</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>The “PrimaryKey” is the key attribute in our table “CustomerDetails”</p>
+
+<h3 id="50-creating-our-viewmodel-class-file">5.0 Creating our ViewModel class file</h3>
+
+<p>5.1 Right click the “ViewModels” folder -&gt; “Add” -&gt; “New Item…” and choose “Visual C#” -&gt; “Class”</p>
+
+<p>5.2 Name your class file. In our example, we use “CustomerViewModel.cs” and click “Okay”</p>
+
+<h3 id="60-preparation-of-our-viewmodel-for-getting-the-list-of-details">6.0 Preparation of Our ViewModel For Getting the List Of Details</h3>
+
+<p>6.1 Let first implement the INotifyPropertyChanged</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="o">...</span> 
+<span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">ComponentModel</span><span class="p">;</span>
+
+<span class="n">namespace</span> <span class="no">CrudWithRealmApp</span><span class="o">.</span><span class="no">ViewModels</span>
+<span class="p">{</span>
+  <span class="kp">public</span> <span class="k">class</span> <span class="nc">CustomerViewModel</span> <span class="p">:</span> <span class="no">INotifyPropertyChanged</span>
+  <span class="p">{</span>
+    <span class="sr">//</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><strong>Question:</strong> <i>What does “INotifyPropertyChanged” means?</i></p>
+
+<p><strong>Answer:</strong> Is an interface to notify clients, typically binding clients that there has changed or the property has changed.</p>
+
+<p>6.2 Paste this code snippet to easily use the “OnPropertyChanged” method. We use this method in our setter declaration because the property value is changing.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="sr">//</span> <span class="no">Import</span> <span class="n">this</span> <span class="n">package</span>
+<span class="n">using</span> <span class="no">System</span><span class="o">.</span><span class="no">RunTime</span><span class="o">.</span><span class="no">CompilerServices</span><span class="p">;</span>
+
+<span class="sr">//</span> <span class="no">Add</span> <span class="n">this</span> <span class="n">inside</span> <span class="n">your</span> <span class="k">class</span>
+<span class="kp">public</span> <span class="n">event</span> <span class="no">PropertyChangedEventHandler</span> <span class="no">PropertyChanged</span><span class="p">;</span>
+
+<span class="kp">protected</span> <span class="n">virtual</span> <span class="n">void</span> <span class="no">OnPropertyChanged</span><span class="p">([</span><span class="no">CallerMemberName</span><span class="p">]</span> <span class="n">string</span> <span class="n">propertyName</span> <span class="o">=</span> <span class="n">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="no">PropertyChanged</span><span class="p">?</span><span class="o">.</span><span class="no">Invoke</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">new</span> <span class="no">PropertyChangedEventArgs</span><span class="p">(</span><span class="n">propertyName</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>6.3 Create a list public and private property (backing field) of our model and put the “OnPropertyChanged” inside our “set”</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="o">...</span> 
+<span class="sr">//</span> <span class="no">Import</span> <span class="n">our</span> <span class="n">model</span>
+<span class="n">using</span> <span class="no">CrudWithRealmApp</span><span class="o">.</span><span class="no">Models</span><span class="p">;</span>
+
+<span class="sr">//</span> <span class="no">Inside</span> <span class="n">your</span> <span class="k">class</span>
+<span class="kp">private</span> <span class="no">List</span><span class="o">&lt;</span><span class="no">CustomerDetails</span><span class="o">&gt;</span> <span class="n">_listOfCustomerDetails</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="no">List</span><span class="o">&lt;</span><span class="no">CustomerDetails</span><span class="o">&gt;</span> <span class="no">ListOfCustomerDetails</span>
+<span class="p">{</span>
+  <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_listOfCustomerDetails</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">set</span>
+  <span class="p">{</span>
+    <span class="n">_listOfCustomerDetails</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="no">OnPropertyChanged</span><span class="p">();</span> <span class="sr">//</span> <span class="no">Added</span> <span class="n">the</span> <span class="no">OnPropertyChanged</span> <span class="no">Method</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>6.4 Create a constructor for getting the list of Customer Details</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="sr">//</span> <span class="no">Add</span> <span class="n">this</span> <span class="n">package</span>
+<span class="n">using</span> <span class="no">Realms</span><span class="p">;</span>
+
+<span class="sr">//</span> <span class="no">Add</span> <span class="n">this</span> <span class="n">inside</span> <span class="n">your</span> <span class="n">view</span> <span class="n">model</span> <span class="k">class</span>
+<span class="nc">Realm</span> <span class="n">_getRealmInstance</span> <span class="o">=</span> <span class="no">Realm</span><span class="o">.</span><span class="no">GetInstance</span><span class="p">();</span>
+
+<span class="kp">public</span> <span class="no">CustomerViewModel</span><span class="p">(){</span>
+  <span class="sr">//</span> <span class="n">supply</span> <span class="n">the</span> <span class="kp">public</span> <span class="no">ListOfCustomerDetails</span> <span class="n">with</span> <span class="n">the</span> <span class="n">retrieved</span> <span class="n">list</span> <span class="n">of</span> <span class="n">details</span>
+  <span class="no">ListOfCustomerDetails</span> <span class="o">=</span> <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">All</span><span class="o">&lt;</span><span class="no">CustomerDetails</span><span class="o">&gt;</span><span class="p">()</span><span class="o">.</span><span class="no">ToList</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="70-preparation-of-our-viewmodel-for-create-update-and-delete-commands">7.0 Preparation of Our ViewModel For Create, Update and Delete Commands</h3>
+
+<p>7.1 Inside the class view model, add this property referencing the model</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="kp">private</span> <span class="no">CustomerDetails</span> <span class="n">_customerDetails</span> <span class="o">=</span> <span class="n">new</span> <span class="no">CustomerDetails</span><span class="p">();</span>
+
+<span class="kp">public</span> <span class="no">CustomerDetails</span> <span class="no">CustomerDetails</span> <span class="p">{</span>
+   <span class="n">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_customerDetails</span><span class="p">;</span> <span class="p">}</span> 
+   <span class="n">set</span> 
+   <span class="p">{</span>
+      <span class="n">_customerDetails</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+      <span class="no">OnPropertyChanged</span><span class="p">();</span> <span class="sr">//</span> <span class="no">Add</span> <span class="n">the</span> <span class="no">OnPropertyChanged</span><span class="p">();</span>
+   <span class="p">}</span> 
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>We will use this public “CustomerDetails” for binding in our view.</p>
+
+<p>7.2. For Add, Edit and Delete/Remove Command Snippet,</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="code"><pre><span class="o">...</span>
+<span class="sr">//</span> <span class="n">import</span> <span class="n">this</span>
+<span class="n">using</span> <span class="no">Xamarin</span><span class="o">.</span><span class="no">Forms</span>
+
+<span class="sr">//</span> <span class="no">Add</span> <span class="n">this</span> <span class="n">inside</span> <span class="n">your</span> <span class="n">view</span> <span class="n">model</span> <span class="k">class</span>
+<span class="kp">public</span> <span class="no">Command</span> <span class="no">CreateCommand</span> <span class="sr">//</span> <span class="k">for</span> <span class="no">ADD</span>
+<span class="p">{</span>
+  <span class="n">get</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+      <span class="sr">//</span> <span class="k">for</span> <span class="n">auto</span> <span class="n">increment</span> <span class="n">the</span> <span class="nb">id</span> <span class="n">upon</span> <span class="n">adding</span>
+      <span class="n">_customerDetails</span><span class="o">.</span><span class="no">CustomerId</span> <span class="o">=</span> <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">All</span><span class="o">&lt;</span><span class="no">CustomerDetails</span><span class="o">&gt;</span><span class="p">()</span><span class="o">.</span><span class="no">Count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">Write</span><span class="p">(()</span><span class="o">=&gt;</span>
+      <span class="p">{</span>
+        <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">Add</span><span class="p">(</span><span class="n">_customerDetails</span><span class="p">);</span> <span class="sr">//</span> <span class="no">Add</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">set</span> <span class="n">of</span> <span class="n">details</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kp">public</span> <span class="no">Command</span> <span class="no">UpdateCommand</span> <span class="sr">//</span> <span class="no">For</span> <span class="no">UPDATE</span>
+<span class="p">{</span>
+  <span class="n">get</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(()</span><span class="o">=&gt;</span>
+    <span class="p">{</span>
+      <span class="sr">//</span> <span class="n">instantiate</span> <span class="n">to</span> <span class="n">supply</span> <span class="n">the</span> <span class="n">new</span> <span class="n">set</span> <span class="n">of</span> <span class="n">details</span>
+      <span class="n">var</span> <span class="n">customerDetailsUpdate</span> <span class="o">=</span> <span class="n">new</span> <span class="no">CustomerDetails</span>
+      <span class="p">{</span>
+        <span class="no">CustomerId</span> <span class="o">=</span> <span class="n">_customerDetails</span><span class="o">.</span><span class="no">CustomerId</span><span class="p">,</span>
+        <span class="no">CustomerName</span> <span class="o">=</span> <span class="n">_customerDetails</span><span class="o">.</span><span class="no">CustomerName</span><span class="p">,</span>
+        <span class="no">CustomerAge</span> <span class="o">=</span> <span class="n">_customerDetails</span><span class="o">.</span><span class="no">CustomerAge</span>
+      <span class="p">};</span>
+
+      <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">Write</span><span class="p">(()</span><span class="o">=&gt;</span>
+      <span class="p">{</span>
+        <span class="sr">//</span> <span class="k">when</span> <span class="n">there</span><span class="err">'</span><span class="n">s</span> <span class="nb">id</span> <span class="n">match</span><span class="p">,</span> <span class="n">the</span> <span class="n">details</span> <span class="n">will</span> <span class="n">be</span> <span class="n">replaced</span> <span class="n">except</span> <span class="n">by</span> <span class="n">primary</span> <span class="n">key</span>
+        <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">Add</span><span class="p">(</span><span class="n">customerDetailsUpdate</span><span class="p">,</span> <span class="ss">update: </span><span class="kp">true</span><span class="p">);</span>
+      <span class="p">})</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kp">public</span> <span class="no">Command</span> <span class="no">RemoveCommand</span>
+<span class="p">{</span>
+  <span class="n">get</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(()</span><span class="o">=&gt;</span>
+    <span class="p">{</span>
+      <span class="sr">//</span> <span class="n">get</span> <span class="n">the</span> <span class="n">details</span> <span class="n">with</span> <span class="n">specific</span> <span class="nb">id</span>
+      <span class="n">var</span> <span class="n">getAllCustomerDetailsById</span> <span class="o">=</span> <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">All</span><span class="o">&lt;</span><span class="no">CustomerDetails</span><span class="o">&gt;</span><span class="p">()</span><span class="o">.</span><span class="no">First</span><span class="p">(</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="no">CustomerId</span> <span class="o">==</span> <span class="n">_customerDetails</span><span class="o">.</span><span class="no">CustomerId</span><span class="p">);</span>
+
+      <span class="n">using</span><span class="p">(</span><span class="n">var</span> <span class="n">transaction</span> <span class="o">=</span> <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">BeginWrite</span><span class="p">()){</span>
+        <span class="sr">//</span> <span class="n">remove</span> <span class="n">all</span> <span class="n">details</span>
+        <span class="n">_getRealmInstance</span><span class="o">.</span><span class="no">Remove</span><span class="p">(</span><span class="n">getAllCustomerDetailsById</span><span class="p">);</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="no">Commit</span><span class="p">();</span>
+      <span class="p">};</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>We’re are done with the part I, now we can prepare our views and add some code snippets for navigation.</p>
+
+<p><a href="https://deanilvincent.github.io/2017/06/10/creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part2/">Creating Simple Xamarin Forms Crud App with RealmDB and MVVM Part 2</a></p>
+
+<p>If you have some questions or issues while following the steps here in the part 1, let me know below :)</p>
+:ET

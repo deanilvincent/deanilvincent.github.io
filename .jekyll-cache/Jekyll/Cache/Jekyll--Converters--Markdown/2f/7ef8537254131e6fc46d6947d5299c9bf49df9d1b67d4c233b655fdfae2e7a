@@ -1,0 +1,110 @@
+I"I<p>Automapper is very useful especially if you want to avoid too much manual mapping from DTO class (Data transfer object) to your Model class vice versa. But what is Automapper?</p>
+
+<p>“AutoMapper is a simple little library built to solve a deceptively complex problem - getting rid of code that mapped one object to another. This type of code is rather dreary and boring to write, so why not invent a tool to do it for us?” - <a href="https://automapper.org/">Automapper.org</a></p>
+
+<p>Pretty sure you’ve seen or even tried using this kind of code scenario.</p>
+
+<p>CustomerDto.cs</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CustomerDto {
+    public int CustomerId {get;set}
+    public string Firstname {get;set}
+    ... (let's say you have many properties)
+}
+</code></pre></div></div>
+
+<p>And you want to map it to your model class.</p>
+
+<p>Customer.cs</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Customer {
+    public int CustomerId {get;set}
+    public string Firstname {get;set}
+    ...
+}
+</code></pre></div></div>
+
+<p>What you usually do is manually do this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+public void ManuallyMap(CustomerDto dto)
+var customer = new Customer{
+    CustomerId = dto.CustomerId,
+    Firstname = dto.Firstname,
+    ... so on and so forth.
+}
+...
+</code></pre></div></div>
+
+<p>This kind of approach is not good because you waste a lot of time manually mapping each property. Good thing, you AutoMapper is available in <a href="https://www.nuget.org/">nuget package manager</a> where you can just simply install.</p>
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>Make sure you’ve already created or you have existing ASP.NET Core project (MVC or Web API).</p>
+
+<h3 id="10-install-the-package">1.0 Install the Package</h3>
+<p>1.1 Open the terminal and execute the command or open Nuget Package Manager. Look for this package. <code class="highlighter-rouge">AutoMapper.Extensions.Microsoft.DependencyInjection</code>
+<img src="https://user-images.githubusercontent.com/10904957/65323593-61b43980-dbdc-11e9-8eab-fb0781427a5d.PNG" alt="Mark Deanil Vicente" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+</code></pre></div></div>
+
+<p>This is an AutoMapper extensions for ASP.NET Core project.</p>
+<h3 id="setup-automapper-helper-class">Setup AutoMapper Helper class.</h3>
+
+<p>I named this class <code class="highlighter-rouge">AutoMapperProfile.cs</code>. You can map multiple dtos &amp; model class in there.</p>
+
+<p>I include this class inside my “Helpers” folder but it depends on you where do you want to store this class file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using AutoMapper;
+
+public class AutoMapperProfile : Profile 
+{
+    public AutoMapperProfile()
+    {
+        CreateMap&lt;CustomerDto, Customer&gt;();
+    }
+}
+</code></pre></div></div>
+
+<h3 id="modify-startupcs">Modify Startup.cs.</h3>
+
+<p>Add the automapper in the constructor &amp; register the AutoMapper service in the <code class="highlighter-rouge">ConfigureServices</code> method.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Startup
+{
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+        Mapper.Initialize(cfg =&gt;
+        {
+            cfg.AddProfile&lt;AutoMapperProfile&gt;();
+        });
+    }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+        // add Automapper
+        services.AddAutoMapper();
+        ...
+    }
+}
+</code></pre></div></div>
+
+<h3 id="sample-usage">Sample Usage.</h3>
+
+<p>1.1 Inject the <code class="highlighter-rouge">IMapper</code> in th constructor.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CustomerService 
+{
+    private readonly IMapper mapper;
+    public CustomerService(IMapper mapper)
+    {
+        this.mapper = mapper;
+    }
+}
+</code></pre></div></div>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET

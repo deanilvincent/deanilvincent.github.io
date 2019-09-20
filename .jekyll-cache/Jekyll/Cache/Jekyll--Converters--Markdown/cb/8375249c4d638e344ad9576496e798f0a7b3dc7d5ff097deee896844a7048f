@@ -1,0 +1,230 @@
+I"58<p>In this post, we will create basic design of our pages and navigate them properly.</p>
+
+<p>If you haven’t read the first part, you can find it here:</p>
+
+<p><a href="https://deanilvincent.github.io/2017/06/09/creating-simple-xamarin-forms-crud-app-with-realmdb-and-mvvm-part1/">Creating Simple Xamarin Forms Crud App with RealmDB and MVVM Part 1</a></p>
+
+<h3 id="80-creating-pages-for-list-of-customer-details-create-page-edit--delete-page">8.0 Creating Pages for List of Customer Details, Create Page, Edit &amp; Delete Page</h3>
+
+<p>8.1 Right click the “Views” folder -&gt; “Add” -&gt; “New Item…” and go to “Visual C#” -&gt; “Cross Platform” then choose “Forms Blank Content Page Xaml.” Name this page as, for example, “CreateCustomer.xaml”</p>
+
+<p>8.2 Do the same and create pages for “UpdateOrDeleteCustomer.xaml”, “ListOfCustomers”</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/26988663-d90430de-4d82-11e7-9c8b-132f95d8323a.PNG" /></p>
+
+<p>8.3 Since we want to use the “ViewModel” where our Commands are located, we need reference it inside our xaml page then bind the whole page with it.</p>
+
+<p>You can achieve it by adding this code snippet after the x:Class=”…” above</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/27001690-ed2969e6-4e02-11e7-8cbb-f1a098072441.PNG" /></p>
+
+<p>8.4 For “CreateCustomer.xaml” Page Add this code inside your ContentPage</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">StackLayout</span> <span class="no">Padding</span><span class="o">=</span><span class="s2">"20"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Enter Customer Name"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerDetails.CustomerName, Mode=TwoWay}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Enter Customer Age"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerDetails.CustomerAge, Mode=TwoWay}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Create"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding CreateCommand}"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/StackLayout&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>We use the Mode=TwoWay to use the property from source to target or target to source. For Basic Understanding of DataBinding and MVVM you can back to this post <a href="https://deanilvincent.github.io//2017/06/03/basic-understanding-of-mvvm-and-databinding-in-xamarin-forms/">Basic Understanding How Data Binding and MVVM works in Xamarin Forms</a></p>
+
+<p>You also notice the “CreateCommand” is bindable inside our Button. So when the user click the button, the command will execute inside our ViewModel.</p>
+
+<p>8.5 For “UpdateOrDeleteCustomer.xaml” Page Add this code inside your ContentPage</p>
+
+<p>Note: But before that, you need to reference our ViewModel again. Go back to step 8.3 and do the same thing.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">StackLayout</span> <span class="no">Padding</span><span class="o">=</span><span class="s2">"20"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Enter Customer Id for Update/Delete"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerDetails.CustomerId, Mode=TwoWay}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Enter Customer Name"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerDetails.CustomerName, Mode=TwoWay}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Enter Customer Age"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Entry</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerDetails.CustomerAge, Mode=TwoWay}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Update"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding UpdateCommand}"</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Delete"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding RemoveCommand}"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/StackLayout&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>8.6 For “ListOfCustomers.xaml” Page, add this code snippet inside your content page.</p>
+
+<p>Note: But before that, you need to reference our ViewModel again. Go back to step 8.3 and do the same thing.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">ListView</span> <span class="no">ItemSource</span><span class="o">=</span><span class="s2">"{Binding ListOfCustomerDetails}"</span>
+          <span class="no">HasUnevenRows</span><span class="o">=</span><span class="s2">"True"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="no">ListView</span><span class="o">.</span><span class="no">ItemTemplate</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="no">DataTemplate</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="no">ViewCell</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="no">StackLayout</span> <span class="no">Padding</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+                  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerId}"</span><span class="o">/&gt;</span>
+                  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerName}"</span><span class="o">/&gt;</span>
+                  <span class="o">&lt;</span><span class="no">Label</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"{Binding CustomerAge}"</span><span class="o">/&gt;</span>
+                <span class="o">&lt;</span><span class="sr">/StackLayout&gt;
+              &lt;/</span><span class="no">ViewCell</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="sr">/DataTemplate&gt;
+          &lt;/</span><span class="no">ListView</span><span class="o">.</span><span class="no">ItemTemplate</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/ListView&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>8.7 Lastly, our “MainPage.xaml” page. Just simply add this code snippet</p>
+
+<p>Note: But before that, you need to reference our ViewModel again. Go back to step 8.3 and do the same thing.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="no">StackLayout</span> <span class="no">Padding</span><span class="o">=</span><span class="s2">"20"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"List Of Customers"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding NavToListCommand}"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Create Customer Details"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding NavToCreateCommand}"</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="no">Button</span> <span class="no">Text</span><span class="o">=</span><span class="s2">"Update or Delete Customer by Id"</span>
+          <span class="no">Command</span><span class="o">=</span><span class="s2">"{Binding NavToUpdateDeleteCommand}"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="sr">/StackLayout&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>I guess you are wondering now, where these commands are located? Proceed to step 9 instead.</p>
+
+<h3 id="90-implementing-simple-navigation-inside-our-viewmodel">9.0 Implementing Simple Navigation Inside Our ViewModel</h3>
+
+<p>9.1 Inside our CustomerViewModel, Add this following commands</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="code"><pre><span class="sr">//</span> <span class="no">For</span> <span class="no">Navigation</span> <span class="no">Page</span>
+  <span class="kp">public</span> <span class="no">Command</span> <span class="no">NavToListCommand</span>
+  <span class="p">{</span>
+    <span class="n">get</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(</span><span class="n">async</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="p">{</span>
+        <span class="n">await</span> <span class="no">App</span><span class="o">.</span><span class="no">Current</span><span class="o">.</span><span class="no">MainPage</span><span class="o">.</span><span class="no">Navigation</span><span class="o">.</span><span class="no">PushAsync</span><span class="p">(</span><span class="n">new</span> <span class="no">ListOfCustomers</span><span class="p">());</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kp">public</span> <span class="no">Command</span> <span class="no">NavToCreateCommand</span>
+  <span class="p">{</span>
+    <span class="n">get</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(</span><span class="n">async</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="p">{</span>
+        <span class="n">await</span> <span class="no">App</span><span class="o">.</span><span class="no">Current</span><span class="o">.</span><span class="no">MainPage</span><span class="o">.</span><span class="no">Navigation</span><span class="o">.</span><span class="no">PushAsync</span><span class="p">(</span><span class="n">new</span> <span class="no">CreateCustomer</span><span class="p">());</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kp">public</span> <span class="no">Command</span> <span class="no">NavToUpdateDeleteCommand</span>
+  <span class="p">{</span>
+    <span class="n">get</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="n">new</span> <span class="no">Command</span><span class="p">(</span><span class="n">async</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="p">{</span>
+        <span class="n">await</span> <span class="no">App</span><span class="o">.</span><span class="no">Current</span><span class="o">.</span><span class="no">MainPage</span><span class="o">.</span><span class="no">Navigation</span><span class="o">.</span><span class="no">PushAsync</span><span class="p">(</span><span class="n">new</span> <span class="no">UpdateOrDeleteCustomer</span><span class="p">());</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="100-updating-our-appxamlcs-and-run-the-app">10.0 Updating Our App.xaml.cs and Run the App</h3>
+
+<p>10.1 Update your MainPage inside our App.xaml.cs</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/27001886-c66d483c-4e06-11e7-9ee1-df02b744bd50.PNG" /></p>
+
+<p>10.2 Run the app :)</p>
+
+<p>Now you have a Cross Platform Crud App running in iOS, Android and UWP with Realm Mobile Database in each platform. :)</p>
+
+<p>For Github Repo: <a href="https://github.com/deanilvincent/Xamarin-Forms-Crud-App-With-RealmDB-and-MVVM">Xamarin-Forms-Crud-App-With-RealmDB-and-MVVM</a></p>
+
+<p>Thank you for reading. I hope you’ve learned from me. Feel free to comment below!</p>
+:ET
