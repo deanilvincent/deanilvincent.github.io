@@ -1,0 +1,83 @@
+I"�<p>If you are looking for free &amp; open-source alternative relational database management system for you application, there are a lot of options out there. But one of my top picks is the PostgreSQL. PostgreSQL is not new in the industry, in fact it has been around for more than two decades and a lot of small, medium to enterprise businesses are using this.</p>
+
+<h2 id="what-is-exactly-postgresql">What is exactly PostgreSQL?</h2>
+
+<p>PostgreSQL is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads. <a href="https://www.postgresql.org/about/">postgresql.org/about</a></p>
+
+<p>The good thing is, we can easily use this as our database for our ASP.NET Core Web App.</p>
+
+<p>So enough intro, let’s get started.</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>Make sure you already downloaded and installed PostgreSQL in your machine. If you haven’t installed yet, you can visit this link <a href="http://www.postgresqltutorial.com/install-postgresql/">http://www.postgresqltutorial.com/install-postgresql/</a>.</p>
+
+<h3 id="10-install-the-package">1.0 Install the Package</h3>
+<p>In this sample, I’m using ASP.NET Core Web API project but the procedure can be implemented in ASP.NET Core MVC.</p>
+
+<p>1.1 Open the terminal and execute the command or open Nuget Package Manager. Look for this package. <code class="highlighter-rouge">Npgsql.EntityFrameworkCore.PostgreSQL</code>
+<img src="https://user-images.githubusercontent.com/10904957/65769646-a274fb00-e166-11e9-9438-c85e0b8c7fbb.PNG" alt="Mark Deanil Vicente" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Install-Package Npgsql.EntityFrameworkCore.PostgreSQL
+</code></pre></div></div>
+
+<p>You can find different versions <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL">here</a> that fits on your .net core version.</p>
+
+<h3 id="20-setup-connection-string">2.0 Setup connection string.</h3>
+
+<p>Locate your DbContext <code class="highlighter-rouge">OnConfiguring(DbContextOptionsBuilder optionsBuilder)</code> and update your connection string similar to this.</p>
+
+<h3 id="30-modify-startupcs">3.0 Modify Startup.cs.</h3>
+
+<p>Add the automapper in the constructor &amp; register the AutoMapper service in the <code class="highlighter-rouge">ConfigureServices</code> method.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Startup
+{
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+        Mapper.Initialize(cfg =&gt;
+        {
+            cfg.AddProfile&lt;AutoMapperProfile&gt;();
+        });
+    }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+        // add Automapper
+        services.AddAutoMapper();
+        ...
+    }
+}
+</code></pre></div></div>
+
+<h3 id="40-sample-usage">4.0 Sample Usage.</h3>
+
+<p>Inject first the <code class="highlighter-rouge">IMapper</code> in the class constructor.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CustomerService 
+{
+    private readonly IMapper mapper;
+    public CustomerService(IMapper mapper)
+    {
+        this.mapper = mapper;
+    }
+
+    public Customer CustomerDtoToCustomer(CustomerDto customerDto)
+    {
+        return mapper.Map&lt;Customer&gt;(customerDto);
+    }
+
+    public CustomerDto CustomerToCustomerDto(Customer customer)
+    {
+        return mapper.Map&lt;CustomerDto&gt;(customer);
+    }
+}
+</code></pre></div></div>
+
+<p>As you see from above, it will automatically map based on their property. It’s easy so try it on your future or existing projects.</p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET
