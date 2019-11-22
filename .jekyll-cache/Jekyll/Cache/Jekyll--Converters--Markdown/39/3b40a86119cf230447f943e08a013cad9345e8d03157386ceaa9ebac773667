@@ -1,0 +1,90 @@
+I"-<p>Users &amp; roles seeding in an app is optional but it is one of the important tasks you should consider while building your application authentication. Instead of creating a data via your app form, using data seeding, you can directly populate data upon EF migration. This feature is called “Model seed data” or <a href="https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding" target="_blank">“Data Seeding”</a> and it’s out since EF Core 2.1.</p>
+
+<p>In this blog, we’re going to use this feature to seed users &amp; roles because we want our ASP.NET Core app to have its default user and role data.</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<p>Make sure you already setup your ASP.NET Core app identity models and your database context (DbContext).
+In this demo, I’m using ASP.NET Core 3.0 and it’s ready for user and role seeding.</p>
+
+<h3 id="role-seeding">Role Seeding</h3>
+<p>First, let’s seed roles. Inside the <code class="highlighter-rouge">OnModelCreating</code> of your DbContext file, add this code.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>builder.Entity&lt;Role&gt;().HasData(new List&lt;Role&gt;
+{
+    new Role {
+        Id = 1, 
+        Name = "Admin", 
+        NormalizedName = "
+        ADMIN"
+    },
+    new Role {
+        Id = 2, 
+        Name = "Staff", 
+        NormalizedName = "STAFF"
+    },
+});
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">NormalizedName</code> must always be upper case.</p>
+
+<h3 id="user--user-role-seeding">User &amp; User Role Seeding</h3>
+<p>After we create roles, then we can seed a user with a role attach to it. Place this code after the code from above.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var hasher = new PasswordHasher&lt;User&gt;();
+builder.Entity&lt;User&gt;().HasData(
+    new User {
+        Id = 1, // primary key
+        UserName = "admin",
+        NormalizedUserName = "ADMIN",
+        PasswordHash = hasher.HashPassword(null, "temporarypass"),
+        IsActive = true
+    },
+    new User {
+        Id = 2, // primary key
+        UserName = "staff",
+        NormalizedUserName = "STAFF",
+        PasswordHash = hasher.HashPassword(null, "temporarypass"),
+        IsActive = true
+    }
+);
+
+builder.Entity&lt;UserRole&gt;().HasData(
+    new UserRole
+    {
+        RoleId = 1, // for admin username
+        UserId = 1  // for admin role
+    },
+    new UserRole
+    {
+        RoleId = 2, // for staff username
+        UserId = 2  // for staff role
+    }
+);
+</code></pre></div></div>
+
+<p>As you can see above, we called the <code class="highlighter-rouge">PasswordHasher</code> to generate an hash password of <code class="highlighter-rouge">temporarypass</code>.
+We also called the <code class="highlighter-rouge">builder.Entity&lt;UserRole&gt;</code> to assign the specific user to a role.</p>
+
+<h3 id="do-the-migration">Do the migration</h3>
+
+<p>One you finish the steps above, you can now do the migrations and database update using your command line.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef migrations add MigrateUserAndRoleSeed
+</code></pre></div></div>
+
+<p>As you notice in the snapshot migration file, there’s a <code class="highlighter-rouge">migrationBuilder.InsertData(...)</code> command based from the user and role that we added.</p>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/69421756-d03c8180-0d5c-11ea-8f84-405327ba0096.PNG" alt="Mark Deanil Vicente User &amp; Role Seed Data" width="100%" /></p>
+
+<p>Lastly, update the database.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef database update
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/10904957/69421923-49d46f80-0d5d-11ea-8db9-b9f6186a834d.PNG" alt="Mark Deanil Vicente User &amp; Role Seed Data" width="100%" /></p>
+
+<p>That’s it. It’s very simple to seed a users &amp; roles in EF core!</p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET
