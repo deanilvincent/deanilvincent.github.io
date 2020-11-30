@@ -72,4 +72,7 @@ Let's try our extension method.
 
 Then it will display `For Approval`.
 
+
+<a href="https://github.com/deanilvincent/EnumSampleCsharpConsoleApp" target="_blank">Repo link</a>
+
 If you have some questions or comments, please drop it below 👇 :)
