@@ -5,7 +5,9 @@ title:  "Host Vue.JS App on IIS"
 date:   2019-07-14 05:05:33
 snippet: Today I'm going to help you (with simple steps) how to host your vue.js app on IIS
 ---
-
+<script>
+    window.location.replace('https://dnilvincent.com/blog/posts/host-vuejs-app-on-iis')
+</script>
 In hosting your vue.js app, you have many options to choose from. You can host on different platforms & services like <a href="https://pages.github.com/">Github Pages</a>, <a href="https://about.gitlab.com/product/pages/">Gitlab Pages</a>, <a href="https://www.netlify.com/"> Netlify</a> etc. or even you can create a Docker container that has deployed Vue.JS inside and run it on different virtual machines (this is another topic). These platforms & services provide easy-to-deploy solution but, what if you are in an environment where all of the web apps should be hosted on IIS? Fortunately, IIS supports an easy solution in running vue.js on it. So, let's get started.
 
 ### FTF (First Things First)

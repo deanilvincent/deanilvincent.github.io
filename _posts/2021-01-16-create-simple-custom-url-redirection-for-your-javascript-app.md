@@ -4,9 +4,12 @@ type: blog
 title:  "Create Simple Custom URL Redirection for Vue.JS, React.JS or Angular"
 date:   2021-01-16 00:00:33
 snippet: In this blog, we're going to create our simple custom URL redirection for your javascript application.
-permalink: /2021/01/16/create-simple-custom-url-redirection-for-your-javascript-app/
-redirect_to: 'http://www.github.com'
 ---
+
+<script>
+    window.location.replace('https://dnilvincent.com/blog/posts/create-simple-custom-url-redirection-for-your-javascript-app')
+</script>
+
 On this blog, we're going to create our simple custom URL redirection for your javascript application. This is helpful especially if you're working with session timeout and you want to put the user's previous url in the login page URL path or in the local storage so when the user has successfully logged in, then it will redirect to the previous page before the session timeout.
 
 We're setting up a simple redirection for <a href="https://vuejs.org/" target="_blank">Vue.JS</a>,  <a href="https://reactjs.org/" target="_blank">React.JS</a> and <a href="https://angular.io/" target="_blank">Angular</a>. But you can also try to implement or make similar approach on Vanilla.Js and other JS frameworks or libraries.

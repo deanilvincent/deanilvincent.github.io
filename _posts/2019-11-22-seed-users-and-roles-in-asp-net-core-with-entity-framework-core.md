@@ -5,7 +5,9 @@ title:  "Seed Users & Roles in ASP.NET Core with Entity Framework (EF) Core"
 date:   2019-11-22 07:25:33
 snippet: Seeding of users & roles in ASP.NET Core with EF core made easy. In this blog, I'm going to show you how you can implement a basic seeding of users and roles for your ASP.NET Core app.
 ---
-
+<script>
+    window.location.replace('https://dnilvincent.com/blog/posts/seed-users-and-roles-in-asp-net-core-with-entity-framework-core')
+</script>
 Users & roles seeding in an app is optional but it is one of the important tasks you should consider while building your application authentication. Instead of creating a data via your app form, using data seeding, you can directly populate data upon EF migration. This feature is called "Model seed data" or <a href="https://docs.microsoft.com/en-us/ef/core/modeling/data-seeding" target="_blank">"Data Seeding"</a> and it's out since EF Core 2.1. 
 
 In this blog, we're going to use this feature to seed users & roles because we want our ASP.NET Core app to have its default user and role data.

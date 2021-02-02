@@ -5,7 +5,9 @@ title:  "How to Get the Current Run ID using MLFlow in Azure Databricks"
 date:   2020-06-26 06:49:33
 snippet: In this blog post, you will learn how easy to get the run ID in your current Azure Databricks Notebook. This is helpful especially if you want to use that run ID for deployment within the same notebook that you're working on.
 ---
-
+<script>
+    window.location.replace('https://dnilvincent.com/blog/posts/how-to-get-the-current-runid-using-mlflow-in-azure-databricks')
+</script>
 In this blog post, you will learn how easy to get the run ID in your current Azure Databricks Notebook. This is helpful especially if you want to use that run ID for deployment within the same notebook that you're working on.
 
 ### FTF (First Things First)
