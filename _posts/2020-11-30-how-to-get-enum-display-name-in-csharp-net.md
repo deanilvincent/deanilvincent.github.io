@@ -5,7 +5,9 @@ title:  "How to get Enum Display Name in C# .NET"
 date:   2020-11-30 02:56:33
 snippet: In this blog, I'll show you a basic extension method that you can use to get the display name of your enum.
 ---
-
+<script>
+    window.location.replace('https://dnilvincent.com/blog/posts/how-to-get-enum-display-name-in-csharp-net')
+</script>
 In this blog, I'll show you a basic extension method that you can use to get the display name of your enum.
 
 ### Enum Overview
