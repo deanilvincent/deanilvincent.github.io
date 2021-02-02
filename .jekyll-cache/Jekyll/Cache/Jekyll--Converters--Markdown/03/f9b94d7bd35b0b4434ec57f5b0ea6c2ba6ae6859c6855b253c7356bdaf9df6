@@ -1,4 +1,4 @@
-I"�,<h3 id="what-is-aspnet-core">What is ASP.NET Core?</h3>
+I"+-<h3 id="what-is-aspnet-core">What is ASP.NET Core?</h3>
 
 <p>“ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.” - <a href="https://docs.microsoft.com/en-us/aspnet/core/">Intro to ASP.NET Core</a></p>
 
@@ -60,7 +60,7 @@
 
 <p>2.2 Below the &lt;DotNetCliToolReference … /&gt; Add this code snippet,</p>
 
-<p><code class="highlighter-rouge">&lt;DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" /&gt;</code></p>
+<p><code class="language-plaintext highlighter-rouge">&lt;DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" /&gt;</code></p>
 
 <p>Similar to this image</p>
 
@@ -78,7 +78,7 @@
 
 <p>3.2 Add these following properties inside the Students class:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public int Id { get; set; } // this represents our primary key in the table that we're going to migrate.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public int Id { get; set; } // this represents our primary key in the table that we're going to migrate.
 public string Firstname { get; set; }
 public string Lastname { get; set; }
 public string Section { get; set; }
@@ -114,7 +114,7 @@ public string Section { get; set; }
 
 <p>5.1 Open your DbContext file, and put this code snippet</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
     optionsBuilder.UseSqlServer(@"Server=YOUR_HOST;Database=YOUR_DATABASE;User id=YOUR_USERID;Password=YOUR_PASSWORD;Integrated Security=false;MultipleActiveResultSets=true");
 }
@@ -130,12 +130,12 @@ public string Section { get; set; }
 
 <p>6.2 Look for this codes,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;(options=&gt;options.UseSqlServer(Configuration.GetConnectionString("MyDbContext)));
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;(options=&gt;options.UseSqlServer(Configuration.GetConnectionString("MyDbContext)));
 </code></pre></div></div>
 
 <p>and replace it with this,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services.AddDbContext&lt;MyDbContext&gt;();
 </code></pre></div></div>
 
 <p>Since our connection string was created in our db context.</p>
@@ -146,7 +146,7 @@ public string Section { get; set; }
 
 <p>7.2 Locate your project with this following commands until you reach the main project files.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"cd" for change directory
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"cd" for change directory
 "ls" for viewing as lists
 </code></pre></div></div>
 
@@ -156,7 +156,7 @@ public string Section { get; set; }
 
 <p>8.1 Enter this code snippet (below) and hit enter.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef migrations add initialcreate
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef migrations add initialcreate
 </code></pre></div></div>
 
 <p>This will create a snapshot file ready for migration. You can use different filename in the “initialcreate” just avoid spaces and other illegal characters.</p>
@@ -175,7 +175,7 @@ public string Section { get; set; }
 
 <p>9.1 Go back to your command line then enter this code snippet (below) and hit enter.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef database update 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dotnet ef database update 
 </code></pre></div></div>
 
 <p>This will update your database. Since you haven’t created yetyour database in Sql Server, it will automatically create together with your table and columns.</p>
