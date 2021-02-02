@@ -1,4 +1,4 @@
-I""<p>If you haven’t tried using ASP.NET Core, I have another blog here entitled: <a href="https://deanilvincent.github.io/2018/01/12/steps-in-creating-simple-but-dynamic-powerful-web-app-using-asp-net-core-mvc-connected-to-a-database/">Steps in Creating Simple But Dynamic Powerful Web App using ASP.NET Core MVC connected to a Database</a>. Feel free to read that blog post.</p>
+I"t#<p>If you haven’t tried using ASP.NET Core, I have another blog here entitled: <a href="https://deanilvincent.github.io/2018/01/12/steps-in-creating-simple-but-dynamic-powerful-web-app-using-asp-net-core-mvc-connected-to-a-database/">Steps in Creating Simple But Dynamic Powerful Web App using ASP.NET Core MVC connected to a Database</a>. Feel free to read that blog post.</p>
 
 <p>Normally, in order to publish and host your ASP.NET application on Windows Operation System(OS), you would need to host it on IIS (Internet Information Services). This is the common way to access your published web application.</p>
 
@@ -37,9 +37,9 @@
 
 <p>2.1 Right click your project and choose “Edit ‘YourProjectName’.csproj</p>
 
-<p>2.2 Inside the file, Add this code snippet below the <code class="highlighter-rouge">&lt;TargetFramework&gt;...&lt;/TargetFramework&gt;</code>,</p>
+<p>2.2 Inside the file, Add this code snippet below the <code class="language-plaintext highlighter-rouge">&lt;TargetFramework&gt;...&lt;/TargetFramework&gt;</code>,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64&lt;/RuntimeIdentifier&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64&lt;/RuntimeIdentifier&gt;
   // If you're targeting to windows 7 or any other windows version, change it to win7 or win8
 </code></pre></div></div>
 
@@ -51,13 +51,13 @@
 
 <p>Additional Info: This means, that we’re targeting to generate a publish output for windows only or what we called self-contained app. If you want to target multiple runtime identifiers you can do the example code snippet below:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64;ubuntu.16.10-x64&lt;/RuntimeIdentifier&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;RuntimeIdentifier&gt;win10-x64;ubuntu.16.10-x64&lt;/RuntimeIdentifier&gt;
   // We are targeting both windows and ubuntu.
 </code></pre></div></div>
 
 <h3 id="30-install-nuget-package">3.0 Install Nuget Package</h3>
 
-<p>3.1 Open nuget package manager and search for <code class="highlighter-rouge">Microsoft.AspNetCore.Hosting.WindowsServices</code></p>
+<p>3.1 Open nuget package manager and search for <code class="language-plaintext highlighter-rouge">Microsoft.AspNetCore.Hosting.WindowsServices</code></p>
 
 <p>3.1 Choose what version of package <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices/">(package link)</a>, then click “Install”</p>
 
@@ -65,9 +65,9 @@
 
 <h3 id="40-modify-programcs">4.0 Modify Program.cs</h3>
 
-<p>4.1 Open the Program.cs of the project and modify the <code class="highlighter-rouge">public static void Main(string[] args){...}</code> method then paste the following codes below:</p>
+<p>4.1 Open the Program.cs of the project and modify the <code class="language-plaintext highlighter-rouge">public static void Main(string[] args){...}</code> method then paste the following codes below:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using Microsoft.AspNetCore.Hosting;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
 using System.Diagnostics;
 ... // add these namespaces above
@@ -96,11 +96,11 @@ Similar to the image below:
 
 <p>5.2 Enter this code snippet to publish your app targeting windows runtime.</p>
 
-<p><code class="highlighter-rouge">dotnet publish --configuration Release -r win10-x64 --output C:\MyAppServicePath</code> and click enter.</p>
+<p><code class="language-plaintext highlighter-rouge">dotnet publish --configuration Release -r win10-x64 --output C:\MyAppServicePath</code> and click enter.</p>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/41809719-d96918ba-7724-11e8-9ff2-3ea6c4d9b983.PNG" /></p>
 
-<p>Look for the path <code class="highlighter-rouge">C:\MyAppServicePath</code> and double check if it successfully generated a self-contained app. You’ll see the <code class="highlighter-rouge">.exe</code> &amp; <code class="highlighter-rouge">.dll</code> of your publish output. This means, you are now ready to run that <code class="highlighter-rouge">.exe</code> in Windows Services Manager.</p>
+<p>Look for the path <code class="language-plaintext highlighter-rouge">C:\MyAppServicePath</code> and double check if it successfully generated a self-contained app. You’ll see the <code class="language-plaintext highlighter-rouge">.exe</code> &amp; <code class="language-plaintext highlighter-rouge">.dll</code> of your publish output. This means, you are now ready to run that <code class="language-plaintext highlighter-rouge">.exe</code> in Windows Services Manager.</p>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/41809769-b6863354-7725-11e8-8b04-b4aa6b9b83bb.PNG" /></p>
 
@@ -110,7 +110,7 @@ Similar to the image below:
 
 <p>6.2 Enter this command</p>
 
-<p><code class="highlighter-rouge">sc CREATE NameOfYourService binPath="String_Path_of_the_exe_app"</code></p>
+<p><code class="language-plaintext highlighter-rouge">sc CREATE NameOfYourService binPath="String_Path_of_the_exe_app"</code></p>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/41809820-84b297ae-7726-11e8-8afe-c2b9728272cf.PNG" /></p>
 
@@ -126,19 +126,19 @@ Similar to the image below:
 
 <p>8.1 To the service, just simply enter this command:</p>
 
-<p><code class="highlighter-rouge">sc START NameOfYourService</code></p>
+<p><code class="language-plaintext highlighter-rouge">sc START NameOfYourService</code></p>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/41809894-af498a1c-7727-11e8-9b22-6d1f89a14a76.PNG" /></p>
 
 <p>Other available service commands are:</p>
 
-<p><code class="highlighter-rouge">sc query NameOfYourService</code> - to view the status of the service.
-<code class="highlighter-rouge">sc stop NameOfYourService</code> - to stop the service.
-<code class="highlighter-rouge">sc delete NameOfYourService</code> - to delete the service.</p>
+<p><code class="language-plaintext highlighter-rouge">sc query NameOfYourService</code> - to view the status of the service.
+<code class="language-plaintext highlighter-rouge">sc stop NameOfYourService</code> - to stop the service.
+<code class="language-plaintext highlighter-rouge">sc delete NameOfYourService</code> - to delete the service.</p>
 
 <h3 id="90-running-your-app">9.0 Running your App</h3>
 
-<p>9.1 To run the application, simply enter the port you’ve entered in your <code class="highlighter-rouge">Program.cs</code> for this project, we’re using <code class="highlighter-rouge">localhost:4312</code>.</p>
+<p>9.1 To run the application, simply enter the port you’ve entered in your <code class="language-plaintext highlighter-rouge">Program.cs</code> for this project, we’re using <code class="language-plaintext highlighter-rouge">localhost:4312</code>.</p>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/41809954-8e53a6a2-7728-11e8-8118-93a1130083c4.PNG" /></p>
 

@@ -1,0 +1,67 @@
+I"<p>Deploying Vue.JS App made easy using an extension available on Visual Studio Code. In this blog, I’ll guide you on how to create your app service on Azure where you will be able to deploy your Vue.JS app in that instance.</p>
+
+<h3 id="ftf-first-things-first">FTF (First Things First)</h3>
+
+<ul>
+  <li>Make sure you have an Azure Subscription to continue. If you don’t have a subscription, you can register your own free trial here <a href="https://azure.microsoft.com/en-us/free/" target="_blank">https://azure.microsoft.com/en-us/free/</a></li>
+  <li>Visual Studio Code installed, of course amigo.</li>
+  <li>Vue.JS Application</li>
+  <li>A cup of coffee or tea ☕ (Optional)</li>
+</ul>
+
+<h3 id="1-create-your-azure-app-service">1. Create Your Azure App Service</h3>
+
+<p>1.1 Go to the <a href="https://portal.azure.com" target="_blank">https://portal.azure.com</a> and search for “App Services” on the search box. Choose the “Create app service” or click the “Add” button.</p>
+
+<p><img src="https://i.imgur.com/yZqmaHF.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>1.2 Configure the app service based on your preferences.</p>
+
+<p><img src="https://i.imgur.com/umZbm4b.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>In this sample, I’m using Free F1 but, you can choose other plans depending on your preferred machine specifications.</p>
+
+<p>1.3 Review and click “Create” when you’re done. Wait until it’s done then you can view your app service overview like the image below.</p>
+
+<p><img src="https://i.imgur.com/N02zl0w.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<h3 id="2-install-extension-on-your-visual-studio-code">2. Install Extension on your Visual Studio Code</h3>
+<p>2.1 Open your Visual Studio Code and navigate to the “Extensions” tab. 
+2.2 Look for “Azure App Service” then click “Install”</p>
+
+<p><img src="https://i.imgur.com/7GgUDRv.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<h3 id="3-deploying-your-vuejs-app">3. Deploying your Vue.JS App</h3>
+<p>3.1 Build first your app using <code class="language-plaintext highlighter-rouge">npm run build</code> command and wait until it finishes.
+3.2 Click the Azure Extension logo on the left side and Sign In your Azure Account. This will open a browser tab where you should login your microsoft account with Azure Subscription.</p>
+
+<p><img src="https://i.imgur.com/3O8MZZF.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>After you successfully login your azure account, you’ll be able to see this.</p>
+
+<p><img src="https://i.imgur.com/0jD2GdY.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<h4 id="option-1">Option #1</h4>
+<p>3.3.a Right click your app service, in my case, it’s the “myvuejsapp” then choose the “Deploy to Web App…”
+3.4.b Browse the “dist” folder then select it.</p>
+
+<p><img src="https://i.imgur.com/ctbhfsL.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<h3 id="option-2">Option #2</h3>
+<p>3.3.a Just simply right click the “dist” folder then choose the “Deploy to Web App…” and choose the app service you want to target. In my case, it’s the “myvuejsapp”</p>
+
+<p><img src="https://i.imgur.com/3HYhMwe.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>Wait until it finishes deploying then you’re done. 
+<img src="https://i.imgur.com/9fMwiIR.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>Lastly, visit your site.</p>
+
+<p><img src="https://i.imgur.com/NHSm9TS.png" alt="How to Deploy Vue.JS App on Azure using Visual Studio Code" /></p>
+
+<p>Voila! You have now vue.js running and hosted on Azure App Service.</p>
+
+<p>You can also visit this <a href="https://github.com/Microsoft/vscode-azureappservice/wiki" target="_blank">wiki</a> to learn more about this extension.</p>
+
+<p>If you have some questions or comments, please drop it below 👇 :)</p>
+:ET

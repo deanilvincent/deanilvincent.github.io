@@ -12,6 +12,7 @@ avatar_path: "/assets/img/avatar.png"
 
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 # Url: Your hosting url
 # Change this to your hosting url e.g. http://[your_name].github.io OR http://localhost:4000

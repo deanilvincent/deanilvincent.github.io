@@ -1,4 +1,4 @@
-I")<p>In hosting your vue.js app, you have many options to choose from. You can host on different platforms &amp; services like <a href="https://pages.github.com/">Github Pages</a>, <a href="https://about.gitlab.com/product/pages/">Gitlab Pages</a>, <a href="https://www.netlify.com/"> Netlify</a> etc. or even you can create a Docker container that has deployed Vue.JS inside and run it on different virtual machines (this is another topic). These platforms &amp; services provide easy-to-deploy solution but, what if you are in an environment where all of the web apps should be hosted on IIS? Fortunately, IIS supports an easy solution in running vue.js on it. So, let’s get started.</p>
+I"�<p>In hosting your vue.js app, you have many options to choose from. You can host on different platforms &amp; services like <a href="https://pages.github.com/">Github Pages</a>, <a href="https://about.gitlab.com/product/pages/">Gitlab Pages</a>, <a href="https://www.netlify.com/"> Netlify</a> etc. or even you can create a Docker container that has deployed Vue.JS inside and run it on different virtual machines (this is another topic). These platforms &amp; services provide easy-to-deploy solution but, what if you are in an environment where all of the web apps should be hosted on IIS? Fortunately, IIS supports an easy solution in running vue.js on it. So, let’s get started.</p>
 
 <h3 id="ftf-first-things-first">FTF (First Things First)</h3>
 
@@ -7,7 +7,7 @@
 <h3 id="10-deploy-your-vuejs-app">1.0 Deploy your Vue.JS App</h3>
 <p>1.1 Open the terminal and execute the command</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run build
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run build
 </code></pre></div></div>
 
 <p><img src="https://user-images.githubusercontent.com/10904957/61218941-b8694700-a745-11e9-9980-52e93d7157cd.JPG" /></p>
@@ -23,30 +23,30 @@
 
 <p>2.1 Create a web.config file inside the “myvueapp” and paste these codes:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;configuration&gt;</span>
-    <span class="nt">&lt;system.webServer&gt;</span>
-        <span class="nt">&lt;rewrite&gt;</span>
-            <span class="nt">&lt;rules&gt;</span>
-                <span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">"Handle History Mode and custom 404/500"</span> <span class="na">stopProcessing=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;match</span> <span class="na">url=</span><span class="s">"(.*)"</span> <span class="nt">/&gt;</span>
-                    <span class="nt">&lt;conditions</span> <span class="na">logicalGrouping=</span><span class="s">"MatchAll"</span><span class="nt">&gt;</span>
-                        <span class="nt">&lt;add</span> <span class="na">input=</span><span class="s">"{REQUEST_FILENAME}"</span> <span class="na">matchType=</span><span class="s">"IsFile"</span> <span class="na">negate=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-                        <span class="nt">&lt;add</span> <span class="na">input=</span><span class="s">"{REQUEST_FILENAME}"</span> <span class="na">matchType=</span><span class="s">"IsDirectory"</span> <span class="na">negate=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/conditions&gt;</span>
-                    <span class="nt">&lt;action</span> <span class="na">type=</span><span class="s">"Rewrite"</span> <span class="na">url=</span><span class="s">"/"</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;/rule&gt;</span>
-            <span class="nt">&lt;/rules&gt;</span>
-        <span class="nt">&lt;/rewrite&gt;</span>
-        <span class="nt">&lt;httpErrors&gt;</span>
-            <span class="nt">&lt;remove</span> <span class="na">statusCode=</span><span class="s">"404"</span> <span class="na">subStatusCode=</span><span class="s">"-1"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;remove</span> <span class="na">statusCode=</span><span class="s">"500"</span> <span class="na">subStatusCode=</span><span class="s">"-1"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;error</span> <span class="na">statusCode=</span><span class="s">"404"</span> <span class="na">path=</span><span class="s">"/survey/notfound"</span> <span class="na">responseMode=</span><span class="s">"ExecuteURL"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;error</span> <span class="na">statusCode=</span><span class="s">"500"</span> <span class="na">path=</span><span class="s">"/survey/error"</span> <span class="na">responseMode=</span><span class="s">"ExecuteURL"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/httpErrors&gt;</span>
-        <span class="nt">&lt;modules</span> <span class="na">runAllManagedModulesForAllRequests=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/system.webServer&gt;</span>
-<span class="nt">&lt;/configuration&gt;</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;configuration&gt;
+    &lt;system.webServer&gt;
+        &lt;rewrite&gt;
+            &lt;rules&gt;
+                &lt;rule name="Handle History Mode and custom 404/500" stopProcessing="true"&gt;
+                    &lt;match url="(.*)" /&gt;
+                    &lt;conditions logicalGrouping="MatchAll"&gt;
+                        &lt;add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" /&gt;
+                        &lt;add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" /&gt;
+                    &lt;/conditions&gt;
+                    &lt;action type="Rewrite" url="/" /&gt;
+                &lt;/rule&gt;
+            &lt;/rules&gt;
+        &lt;/rewrite&gt;
+        &lt;httpErrors&gt;
+            &lt;remove statusCode="404" subStatusCode="-1" /&gt;
+            &lt;remove statusCode="500" subStatusCode="-1" /&gt;
+            &lt;error statusCode="404" path="/survey/notfound" responseMode="ExecuteURL" /&gt;
+            &lt;error statusCode="500" path="/survey/error" responseMode="ExecuteURL" /&gt;
+        &lt;/httpErrors&gt;
+        &lt;modules runAllManagedModulesForAllRequests="true"/&gt;
+    &lt;/system.webServer&gt;
+&lt;/configuration&gt;
 </code></pre></div></div>
 
 <p>2.2 Save the file.</p>
